@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @RestController
 public class HelloController {
 
-    @Resource
+    @Autowired
     protected UserApplicationService userApplicationService;
 
     @RequestMapping("/")

@@ -3,18 +3,18 @@ package com.benz.user.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="user")
+//@Entity
+//@Table(name="user")
 public class User {
 
-    @Id
-    @GeneratedValue
+//    @Id
+//    @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Integer age;
 
     public User(){

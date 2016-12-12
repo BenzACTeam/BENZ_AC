@@ -19,20 +19,20 @@ import javax.validation.Valid;
 @Controller
 public class TemplateController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @RequestMapping(value = "/test")
-    public String helloHtml(Model model, HttpServletRequest request, Model uiModel){
-//        userRepository.save(new User("Test1", 10));
-//        userRepository.save(new User("Test2", 20));
-//        userRepository.save(new User("Test3", 30));
-//        userRepository.save(new User("Test4", 40));
-//        userRepository.save(new User("Test5", 50));
-        User user=userRepository.findUser("Test1");
-
-        UserCommand loginForm=new UserCommand(user.getName(),user.getAge().toString());
-        model.addAttribute("loginForm",loginForm);
-        return "hello";
-    }
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @RequestMapping(value = "/test")
+//    public String helloHtml(Model model, HttpServletRequest request, Model uiModel){
+////        userRepository.save(new User("Test1", 10));
+////        userRepository.save(new User("Test2", 20));
+////        userRepository.save(new User("Test3", 30));
+////        userRepository.save(new User("Test4", 40));
+////        userRepository.save(new User("Test5", 50));
+//        User user=userRepository.findUser("Test1");
+//
+//        UserCommand loginForm=new UserCommand(user.getName(),user.getAge().toString());
+//        model.addAttribute("loginForm",loginForm);
+//        return "hello";
+//    }
 }
