@@ -1,4 +1,4 @@
-package com.benz.user.controller;
+package com.benz.user.adapter.web;
 
 import com.benz.user.application.UserCommand;
 import com.benz.user.domain.User;
