@@ -4,10 +4,13 @@ package com.benz.user.domain;
 //import org.springframework.data.jpa.repository.Query;
 //import org.springframework.data.repository.query.Param;
 
+import com.benz.framework.jpa.BaseRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  * Created by xinyu.b.zhang on 16/12/6.
  */
-public interface UserRepository {//extends JpaRepository<User, Long> {
+public interface UserRepository extends BaseRepository<User, Long> {
 
     User findByName(String name);
 

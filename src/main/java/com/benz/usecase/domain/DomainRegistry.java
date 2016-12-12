@@ -1,6 +1,6 @@
 package com.benz.usecase.domain;
 
-import com.benz.framework.spring.SpringBootApplicationContext;
+import com.benz.framework.ioc.SpringBootApplicationContext;
 
 /**
  * Created by paulliu on 2016/12/12.

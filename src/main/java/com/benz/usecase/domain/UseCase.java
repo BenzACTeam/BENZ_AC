@@ -23,6 +23,7 @@ public class UseCase {
     }
 
     public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+
         this.id = DomainRegistry.repository().nextIdentity();
         this.subject = subject;
         this.value = value;
@@ -35,10 +36,10 @@ public class UseCase {
         this.stage = stage;
         this.timeFrame = timeFrame;
         this.contact = contact;
+
     }
 
     public void create() {
-//        DomainRegistry.repository().create(this);
         DomainRegistry.repository().save(this);
     }
 }
