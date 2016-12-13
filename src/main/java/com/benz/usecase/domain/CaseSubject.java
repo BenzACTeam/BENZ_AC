@@ -8,6 +8,10 @@ import com.benz.framework.AssertionConcern;
 public class CaseSubject {
     private String value;
 
+    public String getValue() {
+        return value;
+    }
+
     public CaseSubject(String value) {
         AssertionConcern.assertArgumentNotEmpty(value, "Subject cannot be empty");
         this.value = value;
