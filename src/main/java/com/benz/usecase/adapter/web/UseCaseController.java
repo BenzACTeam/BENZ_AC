@@ -16,7 +16,7 @@ public class UseCaseController {
     @Autowired
     private UseCaseApplicationService useCaseApplicationService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void create(UseCaseCommand aCommand) {
         useCaseApplicationService.createUseCase(aCommand);
     }

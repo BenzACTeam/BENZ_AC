@@ -14,8 +14,7 @@ public class UseCaseApplicationService {
     public String createUseCase(UseCaseCommand command) {
         UseCase useCase =
                 new UseCase(
-                        //new CaseSubject(command.getSubject()),
-                        new CaseSubject("not empty"),
+                        new CaseSubject(command.getSubject()),
                         command.getValue(),
                         command.getScenario(),
                         command.getResult(),
