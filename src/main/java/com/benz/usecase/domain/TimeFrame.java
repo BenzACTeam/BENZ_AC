@@ -11,6 +11,9 @@ public class TimeFrame {
     private Date fromValue;
     private Date toValue;
 
+    public TimeFrame() {
+    }
+
     public TimeFrame(Date fromValue, Date toValue) {
         this.fromValue = fromValue;
         this.toValue = toValue;

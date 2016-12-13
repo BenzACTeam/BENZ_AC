@@ -31,9 +31,12 @@ public class UseCase {
         return id;
     }
 
+    public UseCase() {
+    }
+
     public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
 
-//        this.id = DomainRegistry.repository().nextIdentity();
+        this.id = "mytest";//DomainRegistry.repository().nextIdentity();
         this.subject = subject;
         this.value = value;
         this.scenario = scenario;
