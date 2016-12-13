@@ -1,6 +1,6 @@
 package com.benz.user.adapter.web;
 
-import com.benz.user.application.UserApplicationService;
+//import com.benz.user.application.UserApplicationService;
 import com.benz.user.application.UserCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
