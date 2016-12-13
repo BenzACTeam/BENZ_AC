@@ -3,7 +3,6 @@ package com.benz.usecase.domain;
 /**
  * Created by paulliu on 2016/12/12.
  */
-//@Entity
 public class UseCase {
 
     private String id;
