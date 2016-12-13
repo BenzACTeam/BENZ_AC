@@ -16,8 +16,8 @@ import javax.validation.Valid;
  * Created by xinyu.b.zhang on 16/12/6.
  */
 
-@Controller
-public class TemplateController {
+//@Controller
+//public class TemplateController {
 
 //    @Autowired
 //    private UserRepository userRepository;
@@ -35,4 +35,4 @@ public class TemplateController {
 //        model.addAttribute("loginForm",loginForm);
 //        return "hello";
 //    }
-}
+//}

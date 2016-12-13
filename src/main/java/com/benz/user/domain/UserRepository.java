@@ -10,13 +10,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by xinyu.b.zhang on 16/12/6.
  */
-public interface UserRepository extends BaseRepository<User, Long> {
-
-    User findByName(String name);
-
-    User findByNameAndAge(String name, Integer age);
-
-    //    @Query("from User u where u.name=:name")
-//    User findUser(@Param("name") String name);
-    User findUser(String name);
-}
+//public interface UserRepository extends BaseRepository<User, Long> {
+//
+//    User findByName(String name);
+//
+//    User findByNameAndAge(String name, Integer age);
+//
+//    //    @Query("from User u where u.name=:name")
+////    User findUser(@Param("name") String name);
+//    User findUser(String name);
+//}

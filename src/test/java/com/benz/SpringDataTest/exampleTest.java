@@ -4,7 +4,7 @@ import com.benz.BenzAcApplication;
 
 
 import com.benz.user.domain.User;
-import com.benz.user.domain.UserRepository;
+//import com.benz.user.domain.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration(BenzAcApplication.class)
 public class exampleTest {
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
 
     @Test
     public void test() throws Exception {

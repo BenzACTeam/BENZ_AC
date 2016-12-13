@@ -1,12 +1,17 @@
 package com.benz.usecase.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
+@Entity
 public class UseCase {
 
+    @Id
     private String id;
-    private CaseSubject subject;
+//    private CaseSubject subject;
     private String value;
     private String scenario;
     private String result;
@@ -15,7 +20,7 @@ public class UseCase {
     private String analysisModel;
     private String contributionBU;
     private String stage;
-    private TimeFrame timeFrame;
+//    private TimeFrame timeFrame;
     private String contact;
 
     public String getId() {
@@ -24,8 +29,8 @@ public class UseCase {
 
     public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
 
-        this.id = DomainRegistry.repository().nextIdentity();
-        this.subject = subject;
+//        this.id = DomainRegistry.repository().nextIdentity();
+//        this.subject = subject;
         this.value = value;
         this.scenario = scenario;
         this.result = result;
@@ -34,7 +39,7 @@ public class UseCase {
         this.analysisModel = analysisModel;
         this.contributionBU = contributionBU;
         this.stage = stage;
-        this.timeFrame = timeFrame;
+//        this.timeFrame = timeFrame;
         this.contact = contact;
 
     }

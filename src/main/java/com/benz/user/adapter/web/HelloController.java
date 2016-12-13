@@ -12,16 +12,16 @@ import javax.annotation.Resource;
 /**
  * Created by xinyu.b.zhang on 16/12/7.
  */
-@RestController
-public class HelloController {
-
-    @Autowired
-    protected UserApplicationService userApplicationService;
-
-    @RequestMapping("/")
-    public UserCommand login() {
-        UserCommand userCommand=new UserCommand("admin","password");
-        userCommand=userApplicationService.createUser(userCommand);
-        return userCommand;
-    }
-}
+//@RestController
+//public class HelloController {
+//
+//    @Autowired
+//    protected UserApplicationService userApplicationService;
+//
+//    @RequestMapping("/")
+//    public UserCommand login() {
+//        UserCommand userCommand=new UserCommand("admin","password");
+//        userCommand=userApplicationService.createUser(userCommand);
+//        return userCommand;
+//    }
+//}
