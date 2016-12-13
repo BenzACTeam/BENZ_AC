@@ -3,7 +3,7 @@ package com.benz.usecase.application;
 /**
  * Created by paulliu on 2016/12/12.
  */
-public class UseCaseCommand {
+public class UseCaseCreateCommand {
 
     private String subject;
     private String value;
