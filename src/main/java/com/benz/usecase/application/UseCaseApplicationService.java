@@ -39,14 +39,23 @@ public class UseCaseApplicationService {
 
     public void updateUseCase(UseCaseUpdateCommand command) {
         UseCase useCase = existing(command.getId());
-
-        useCase.setSubject(new CaseSubject(command.getSubject()));
-        useCase.update();
+        useCase.update(
+                new CaseSubject(command.getSubject()),
+                command.getValue(),
+                command.getScenario(),
+                command.getResult(),
+                command.getDataSource(),
+                command.getDataTypeDescription(),
+                command.getAnalysisModel(),
+                command.getContributionBU(),
+                command.getStage(),
+                new TimeFrame(command.getFromDate(), command.getToDate()),
+                command.getContact());
     }
 
     private UseCase existing(String id) {
         UseCase useCase = useCaseRepository.getOne(id);
-        AssertionConcern.assertArgumentNotNull(useCase, "use case is not existing");
+        AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
         return useCase;
     }
 }

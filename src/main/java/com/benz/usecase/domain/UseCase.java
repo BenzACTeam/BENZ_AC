@@ -144,7 +144,9 @@ public class UseCase {
         DomainRegistry.repository().save(this);
     }
 
-    public void update() {
+    public void update(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+        setSubject(subject);
+        setValue(value);
         DomainRegistry.repository().save(this);
     }
 }
