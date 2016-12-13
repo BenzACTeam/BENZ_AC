@@ -1,4 +1,6 @@
-package com.benz.usecase.domain;
+package com.benz.usecase.adapter.persistence;
+
+import com.benz.usecase.domain.CaseSubject;
 
 import javax.persistence.AttributeConverter;
 

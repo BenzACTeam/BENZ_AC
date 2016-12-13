@@ -1,16 +1,12 @@
 package com.benz.usecase.domain;
 
-import javax.persistence.*;
-
 /**
  * Created by paulliu on 2016/12/12.
  */
-@Entity
+//@Entity
 public class UseCase {
 
-    @Id
     private String id;
-    @Convert(converter = CaseSubjectConverter.class)
     private CaseSubject subject;
     private String value;
     private String scenario;
@@ -20,7 +16,6 @@ public class UseCase {
     private String analysisModel;
     private String contributionBU;
     private String stage;
-    @Embedded
     private TimeFrame timeFrame;
     private String contact;
 

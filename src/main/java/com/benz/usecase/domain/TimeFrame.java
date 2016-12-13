@@ -1,12 +1,10 @@
 package com.benz.usecase.domain;
 
-import javax.persistence.Embeddable;
 import java.util.Date;
 
 /**
  * Created by paulliu on 2016/12/12.
  */
-@Embeddable
 public class TimeFrame {
     private Date fromValue;
     private Date toValue;
