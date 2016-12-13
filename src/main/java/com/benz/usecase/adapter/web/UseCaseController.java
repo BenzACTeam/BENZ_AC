@@ -3,6 +3,7 @@ package com.benz.usecase.adapter.web;
 import com.benz.usecase.application.UseCaseApplicationService;
 import com.benz.usecase.application.UseCaseCreateCommand;
 import com.benz.usecase.application.UseCaseUpdateCommand;
+import com.benz.usecase.domain.UseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +23,20 @@ public class UseCaseController {
         useCaseApplicationService.createUseCase(aCommand);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(UseCaseUpdateCommand aCommand) {
         useCaseApplicationService.updateUseCase(aCommand);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public void delete(String id){
+        useCaseApplicationService.deleteUseCase(id);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public Iterable<UseCase> findAll(Integer pageNo, Integer pageSize){
+
+        return  useCaseApplicationService.findAll(pageNo, pageSize);
+
     }
 }

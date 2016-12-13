@@ -141,6 +141,19 @@ public class UseCase {
     public void update(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
         setSubject(subject);
         setValue(value);
+        setScenario(scenario);
+        setResult(result);
+        setDataSource(dataSource);
+        setDataTypeDescription(dataTypeDescription);
+        setAnalysisModel(analysisModel);
+        setContributionBU(contributionBU);
+        setStage(stage);
+        setTimeFrame(timeFrame);
+        setContact(contact);
         DomainRegistry.repository().save(this);
+    }
+
+    public void delete() {
+        DomainRegistry.repository().delete(id);
     }
 }
