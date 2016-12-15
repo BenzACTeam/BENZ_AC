@@ -3,8 +3,14 @@ package com.benz.usecase.application;
 import com.benz.framework.AssertionConcern;
 import com.benz.usecase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+
+import java.util.List;
 
 /**
  * Created by paulliu on 2016/12/12.
@@ -50,17 +56,28 @@ public class UseCaseApplicationService {
                 new TimeFrame(command.getFromDate(), command.getToDate()),
                 command.getContact());
     }
+
     public void deleteUseCase(String id) {
         UseCase useCase = existing(id);
         useCase.delete();
     }
 
-    public Iterable<UseCase> findAll(Integer pageNo, Integer pageSize) {
-        return DomainRegistry.repository().findAll(new PageRequest(pageNo,pageSize));
+    public List<UseCase> findAll(Integer pageNo, Integer pageSize) {
+        Pageable pageRequest = new PageRequest(pageNo,pageSize);
+        Page<UseCase> page = DomainRegistry.repository().findAll(pageRequest);
+        return  page.getContent();
     }
+
     private UseCase existing(String id) {
         UseCase useCase = useCaseRepository.getOne(id);
+        System.out.println(useCase);
         AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
         return useCase;
     }
+
+    public UseCase findOne(String id) {
+        UseCase useCase = DomainRegistry.repository().getOne(id);
+        return useCase;
+    }
+
 }

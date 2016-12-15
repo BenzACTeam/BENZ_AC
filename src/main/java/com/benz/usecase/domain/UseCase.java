@@ -1,10 +1,12 @@
 package com.benz.usecase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class UseCase {
-
     private String id;
     private CaseSubject subject;
     private String value;
@@ -156,4 +158,6 @@ public class UseCase {
     public void delete() {
         DomainRegistry.repository().delete(id);
     }
+
+
 }
