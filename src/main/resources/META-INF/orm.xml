@@ -10,14 +10,88 @@
             <access>FIELD</access>
         </persistence-unit-defaults>
     </persistence-unit-metadata>
-
-    <entity class="com.benz.usecase.domain.UseCase">
-        <attributes>
+    <entity class="com.benz.usecase.domain.UseCase" >
+        <attributes >
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
         </attributes>
         <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
     </entity>
-
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
+
+    <named-native-query name="totalCount">
+        <query><![CDATA[
+            select
+                count(*)
+            from
+                use_case
+        ]]></query>
+    </named-native-query>
+
+    <named-native-query name="findAll" result-set-mapping="useCaseMapping">
+        <query><![CDATA[
+            select
+                uc.id,
+                uc.subject,
+                uc.value,
+                uc.scenario,
+                uc.result,
+                uc.data_source,
+                uc.data_type_description,
+                uc.analysis_model,
+                uc.contributionbu,
+                uc.stage,
+                uc.afrom_value,
+                uc.ato_value,
+                uc.contact
+                from
+                    (select row_number()OVER (ORDER BY id) as RN, u.* from use_case u) uc
+                where
+                   RN
+                   between ? and ?
+
+        ]]></query>
+    </named-native-query>
+
+    <named-native-query name="findOne" result-set-mapping="useCaseMapping">
+        <query><![CDATA[
+            select
+                uc.id,
+                uc.subject,
+                uc.value,
+                uc.scenario,
+                uc.result,
+                uc.data_source,
+                uc.data_type_description,
+                uc.analysis_model,
+                uc.contributionbu,
+                uc.stage,
+                uc.afrom_value,
+                uc.ato_value,
+                uc.contact
+            from
+                use_case uc
+            where
+                id = ?
+
+        ]]></query>
+    </named-native-query>
+
+    <sql-result-set-mapping name="useCaseMapping">
+        <constructor-result target-class="com.benz.usecase.query.UseCaseResult">
+            <column name="id"></column>
+            <column name="subject"></column>
+            <column name="value"></column>
+            <column name="scenario"></column>
+            <column name="result"></column>
+            <column name="data_source"></column>
+            <column name="data_type_description"></column>
+            <column name="analysis_model"></column>
+            <column name="contributionbu"></column>
+            <column name="stage"></column>
+            <column name="afrom_value" class="java.lang.String"></column>
+            <column name="ato_value" class="java.lang.String"></column>
+            <column name="contact"></column>
+        </constructor-result>
+    </sql-result-set-mapping>
 </entity-mappings>

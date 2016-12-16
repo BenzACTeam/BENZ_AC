@@ -1,11 +1,38 @@
 package com.benz.usecase.domain;
 
+import com.benz.usecase.query.UseCaseResult;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
+import javax.persistence.SqlResultSetMapping;
+import java.util.Date;
 
 /**
  * Created by paulliu on 2016/12/12.
  */
 @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+@SqlResultSetMapping(
+        name = "useCaseMapping",
+        classes = @ConstructorResult(
+                targetClass = UseCaseResult.class,
+                columns = {
+                        @ColumnResult(name = "id"),
+                        @ColumnResult(name = "subject"),
+                        @ColumnResult(name = "value"),
+                        @ColumnResult(name = "scenario"),
+                        @ColumnResult(name = "result"),
+                        @ColumnResult(name = "data_source"),
+                        @ColumnResult(name = "data_type_description"),
+                        @ColumnResult(name = "analysis_model"),
+                        @ColumnResult(name = "contributionbu"),
+                        @ColumnResult(name = "stage"),
+                        @ColumnResult(name = "afrom_value",type= String.class),
+                        @ColumnResult(name = "ato_value",type = String.class),
+                        @ColumnResult(name = "contact")
+                }
+        )
+)
 public class UseCase {
     private String id;
     private CaseSubject subject;
