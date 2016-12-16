@@ -1,17 +1,8 @@
 package com.benz.usecase.query;
 
-
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.SqlResultSetMapping;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by hongying.fu on 12/15/2016.
  */
-
-
 public class UseCaseResult {
     private String id;
     private String subject;

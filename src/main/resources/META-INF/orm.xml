@@ -16,7 +16,7 @@
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
         </attributes>
-        <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject2"/>
+        <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
     </entity>
 
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
@@ -34,7 +34,7 @@
         <query><![CDATA[
             select
                 id as id,
-                subject2 as subject2,
+                subject as subject,
                 value as value,
                 scenario as scenario,
                 result as result,
@@ -55,7 +55,7 @@
         <query><![CDATA[
             select
                 id as id,
-                subject2,
+                subject,
                 value,
                 scenario,
                 result,
@@ -78,7 +78,7 @@
     <sql-result-set-mapping name="useCaseMapping">
         <constructor-result target-class="com.benz.usecase.query.UseCaseResult">
             <column name="id"></column>
-            <column name="subject2"></column>
+            <column name="subject"></column>
             <column name="value"></column>
             <column name="scenario"></column>
             <column name="result"></column>

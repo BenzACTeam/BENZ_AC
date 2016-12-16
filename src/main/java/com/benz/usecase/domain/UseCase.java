@@ -6,30 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by paulliu on 2016/12/12.
  */
 @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
-//@SqlResultSetMapping(
-//        name = "useCaseMapping",
-//        classes = @ConstructorResult(
-//                targetClass = UseCaseResult.class,
-//                columns = {
-//                        @ColumnResult(name = "id"),
-//                        @ColumnResult(name = "subject2"),
-//                        @ColumnResult(name = "value"),
-//                        @ColumnResult(name = "scenario"),
-//                        @ColumnResult(name = "result"),
-//                        @ColumnResult(name = "data_source"),
-//                        @ColumnResult(name = "data_type_description"),
-//                        @ColumnResult(name = "analysis_model"),
-//                        @ColumnResult(name = "contributionbu"),
-//                        @ColumnResult(name = "stage"),
-//                        @ColumnResult(name = "afrom_value",type= String.class),
-//                        @ColumnResult(name = "ato_value",type = String.class),
-//                        @ColumnResult(name = "contact")
-//                }
-//        )
-//)
 public class UseCase {
     private String id;
-    private CaseSubject subject2;
+    private CaseSubject subject;
     private String value;
     private String scenario;
     private String result;
@@ -49,12 +28,12 @@ public class UseCase {
         this.id = id;
     }
 
-    public CaseSubject getSubject2() {
-        return subject2;
+    public CaseSubject getSubject() {
+        return subject;
     }
 
-    public void setSubject2(CaseSubject subject2) {
-        this.subject2 = subject2;
+    public void setSubject(CaseSubject subject) {
+        this.subject = subject;
     }
 
     public String getValue() {
@@ -143,7 +122,7 @@ public class UseCase {
     public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
 
         this.id = DomainRegistry.repository().nextIdentity();
-        this.subject2 = subject;
+        this.subject = subject;
         this.value = value;
         this.scenario = scenario;
         this.result = result;
@@ -162,7 +141,7 @@ public class UseCase {
     }
 
     public void update(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
-        setSubject2(subject);
+        setSubject(subject);
         setValue(value);
         setScenario(scenario);
         setResult(result);

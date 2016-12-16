@@ -7,5 +7,4 @@ import com.benz.framework.jpa.BaseRepository;
  */
 public interface UseCaseRepository extends BaseRepository<UseCase, String> {
 
-
 }
