@@ -10,13 +10,15 @@
             <access>FIELD</access>
         </persistence-unit-defaults>
     </persistence-unit-metadata>
+
     <entity class="com.benz.usecase.domain.UseCase" >
         <attributes >
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
         </attributes>
-        <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
+        <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject2"/>
     </entity>
+
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
 
     <named-native-query name="totalCount">
@@ -31,46 +33,42 @@
     <named-native-query name="findAll" result-set-mapping="useCaseMapping">
         <query><![CDATA[
             select
-                uc.id,
-                uc.subject,
-                uc.value,
-                uc.scenario,
-                uc.result,
-                uc.data_source,
-                uc.data_type_description,
-                uc.analysis_model,
-                uc.contributionbu,
-                uc.stage,
-                uc.afrom_value,
-                uc.ato_value,
-                uc.contact
-                from
-                    (select row_number()OVER (ORDER BY id) as RN, u.* from use_case u) uc
-                where
-                   RN
-                   between ? and ?
-
+                id as id,
+                subject2 as subject2,
+                value as value,
+                scenario as scenario,
+                result as result,
+                data_source as data_source,
+                data_type_description as data_type_description,
+                analysis_model as analysis_model,
+                contributionbu as contributionbu,
+                stage as stage,
+                afrom_value as afrom_value,
+                ato_value as ato_value,
+                contact as contact
+            from
+                use_case
         ]]></query>
     </named-native-query>
 
     <named-native-query name="findOne" result-set-mapping="useCaseMapping">
         <query><![CDATA[
             select
-                uc.id,
-                uc.subject,
-                uc.value,
-                uc.scenario,
-                uc.result,
-                uc.data_source,
-                uc.data_type_description,
-                uc.analysis_model,
-                uc.contributionbu,
-                uc.stage,
-                uc.afrom_value,
-                uc.ato_value,
-                uc.contact
+                id as id,
+                subject2,
+                value,
+                scenario,
+                result,
+                data_source,
+                data_type_description,
+                analysis_model,
+                contributionbu,
+                stage,
+                afrom_value,
+                ato_value,
+                contact
             from
-                use_case uc
+                use_case
             where
                 id = ?
 
@@ -80,7 +78,7 @@
     <sql-result-set-mapping name="useCaseMapping">
         <constructor-result target-class="com.benz.usecase.query.UseCaseResult">
             <column name="id"></column>
-            <column name="subject"></column>
+            <column name="subject2"></column>
             <column name="value"></column>
             <column name="scenario"></column>
             <column name="result"></column>

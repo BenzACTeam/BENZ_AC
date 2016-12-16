@@ -1,41 +1,35 @@
 package com.benz.usecase.domain;
 
-import com.benz.usecase.query.UseCaseResult;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.SqlResultSetMapping;
-import java.util.Date;
 
 /**
  * Created by paulliu on 2016/12/12.
  */
 @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
-@SqlResultSetMapping(
-        name = "useCaseMapping",
-        classes = @ConstructorResult(
-                targetClass = UseCaseResult.class,
-                columns = {
-                        @ColumnResult(name = "id"),
-                        @ColumnResult(name = "subject"),
-                        @ColumnResult(name = "value"),
-                        @ColumnResult(name = "scenario"),
-                        @ColumnResult(name = "result"),
-                        @ColumnResult(name = "data_source"),
-                        @ColumnResult(name = "data_type_description"),
-                        @ColumnResult(name = "analysis_model"),
-                        @ColumnResult(name = "contributionbu"),
-                        @ColumnResult(name = "stage"),
-                        @ColumnResult(name = "afrom_value",type= String.class),
-                        @ColumnResult(name = "ato_value",type = String.class),
-                        @ColumnResult(name = "contact")
-                }
-        )
-)
+//@SqlResultSetMapping(
+//        name = "useCaseMapping",
+//        classes = @ConstructorResult(
+//                targetClass = UseCaseResult.class,
+//                columns = {
+//                        @ColumnResult(name = "id"),
+//                        @ColumnResult(name = "subject2"),
+//                        @ColumnResult(name = "value"),
+//                        @ColumnResult(name = "scenario"),
+//                        @ColumnResult(name = "result"),
+//                        @ColumnResult(name = "data_source"),
+//                        @ColumnResult(name = "data_type_description"),
+//                        @ColumnResult(name = "analysis_model"),
+//                        @ColumnResult(name = "contributionbu"),
+//                        @ColumnResult(name = "stage"),
+//                        @ColumnResult(name = "afrom_value",type= String.class),
+//                        @ColumnResult(name = "ato_value",type = String.class),
+//                        @ColumnResult(name = "contact")
+//                }
+//        )
+//)
 public class UseCase {
     private String id;
-    private CaseSubject subject;
+    private CaseSubject subject2;
     private String value;
     private String scenario;
     private String result;
@@ -55,12 +49,12 @@ public class UseCase {
         this.id = id;
     }
 
-    public CaseSubject getSubject() {
-        return subject;
+    public CaseSubject getSubject2() {
+        return subject2;
     }
 
-    public void setSubject(CaseSubject subject) {
-        this.subject = subject;
+    public void setSubject2(CaseSubject subject2) {
+        this.subject2 = subject2;
     }
 
     public String getValue() {
@@ -149,7 +143,7 @@ public class UseCase {
     public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
 
         this.id = DomainRegistry.repository().nextIdentity();
-        this.subject = subject;
+        this.subject2 = subject;
         this.value = value;
         this.scenario = scenario;
         this.result = result;
@@ -168,7 +162,7 @@ public class UseCase {
     }
 
     public void update(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
-        setSubject(subject);
+        setSubject2(subject);
         setValue(value);
         setScenario(scenario);
         setResult(result);

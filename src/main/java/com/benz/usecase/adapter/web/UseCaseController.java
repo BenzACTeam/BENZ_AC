@@ -46,20 +46,6 @@ public class UseCaseController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Page2<UseCaseResult> findAll(Integer pageNo, Integer pageSize) {
-        /*Page<UseCase> xx = useCaseQuery.findAll(new PageRequest(pageNo, pageSize));
-        List<UseCase> ucs =  xx.getContent();
-        List<UseCaseResult> results = new ArrayList<UseCaseResult>();
-        for(UseCase useCase : ucs){
-            UseCaseResult result = new UseCaseResult();
-            result.setId(useCase.getId());
-            result.setSubject(useCase.getSubject().getValue());
-            result.setValue(useCase.getValue());
-            results.add(result);
-        }
-//        return useCaseQuery.findAll(null, pageNo, pageSize);
-        Page2<UseCaseResult> page2 = new Page2<UseCaseResult>();
-        page2.setList(results);
-        page2.hasNext(xx.hasNext());*/
         return useCaseQuery.findAll(null,pageNo,pageSize);
     }
 

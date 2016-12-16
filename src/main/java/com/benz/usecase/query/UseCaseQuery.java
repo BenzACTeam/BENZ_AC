@@ -21,7 +21,6 @@ public class UseCaseQuery {
     @PersistenceContext
     private EntityManager em;
 
-
     public Page2<UseCaseResult> findAll(UseCaseParameter parameter, Integer pageNo, Integer pageSize) {
 
         Page2<UseCaseResult> page = getUseCaseResultPage(parameter, pageNo, pageSize, "findAll", "totalCount");
@@ -31,9 +30,7 @@ public class UseCaseQuery {
     private Page2<UseCaseResult> getUseCaseResultPage(UseCaseParameter parameter, Integer pageNo, Integer pageSize, String findAll, String totalCount1) {
         Query query = em.createNamedQuery(findAll);
 //        String sqlString = query.unwrap(SQLQuery.class).getQueryString();
-
-
-//        Query countQuery = em.createNativeQuery("select count(*) from (" + sqlString + ") totalCount");
+//        Query countQuery = em.createNativeQuery("select count(*) from (" + sqlString + ") as rawquery");
         Query countQuery = em.createNamedQuery("totalCount");
 //        query = em.createNativeQuery(sqlString);
         Integer totalCount = (Integer) countQuery.getSingleResult();
@@ -43,10 +40,10 @@ public class UseCaseQuery {
         page.setPageSize(pageSize);
         page.setTotalCount(totalCount);
 
-        query.setParameter(1, page.getStartNum());
-        query.setParameter(2, page.getEndNum());
-//        query.setFirstResult((pageNo - 1) * pageSize);
-//        query.setMaxResults(pageNo * pageSize);
+//        query.setParameter(1, page.getStartNum());
+//        query.setParameter(2, page.getEndNum());
+        query.setFirstResult((pageNo - 1) * pageSize);
+        query.setMaxResults(pageNo * pageSize);
 
 
         List<UseCaseResult> resultList = query.getResultList();
@@ -62,6 +59,4 @@ public class UseCaseQuery {
         UseCaseResult result = (UseCaseResult) query.getSingleResult();
         return result;
     }
-
-
 }

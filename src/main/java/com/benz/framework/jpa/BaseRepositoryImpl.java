@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
