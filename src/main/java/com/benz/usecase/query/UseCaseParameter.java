@@ -5,8 +5,29 @@ package com.benz.usecase.query;
  */
 public class UseCaseParameter {
     private String subject;
+    private String value;
 
     public String getSubject() {
         return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public UseCaseParameter(String subject, String value) {
+        this.subject = subject;
+        this.value = value;
+    }
+
+    public UseCaseParameter() {
     }
 }

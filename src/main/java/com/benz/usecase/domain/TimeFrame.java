@@ -1,7 +1,9 @@
 package com.benz.usecase.domain;
 
+import com.benz.framework.AssertionConcern;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,15 +23,16 @@ public class TimeFrame {
         this.atoValue = atoValue;
     }
 
-    public TimeFrame(String afromValue, String atoValue) {
+    public TimeFrame(String afromValue, String atoValue){
+        AssertionConcern.assertArgumentNotEmpty(afromValue,"fromValue cannot be empty");
+        AssertionConcern.assertArgumentNotEmpty(atoValue,"atoValue cannot be empty");
         SimpleDateFormat format;
         try {
             format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             this.afromValue = format.parse(afromValue);
             this.atoValue = format.parse(atoValue);
-
         }catch (Exception e){
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
 

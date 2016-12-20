@@ -1,15 +1,9 @@
 package com.benz.usecase.query;
 
-
-import com.benz.framework.jpa.BaseRepository;
-import com.benz.usecase.domain.UseCase;
 import org.hibernate.SQLQuery;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -22,17 +16,13 @@ public class UseCaseQuery {
     private EntityManager em;
 
     public Page2<UseCaseResult> findAll(UseCaseParameter parameter, Integer pageNo, Integer pageSize) {
-
-        Page2<UseCaseResult> page = getUseCaseResultPage(parameter, pageNo, pageSize, "findAll", "totalCount");
+        Page2<UseCaseResult> page = getUseCaseResult(parameter, pageNo, pageSize, "findAll", "totalCount");
         return page;
     }
 
     private Page2<UseCaseResult> getUseCaseResultPage(UseCaseParameter parameter, Integer pageNo, Integer pageSize, String findAll, String totalCount1) {
         Query query = em.createNamedQuery(findAll);
-//        String sqlString = query.unwrap(SQLQuery.class).getQueryString();
-//        Query countQuery = em.createNativeQuery("select count(*) from (" + sqlString + ") as rawquery");
         Query countQuery = em.createNamedQuery("totalCount");
-//        query = em.createNativeQuery(sqlString);
         Integer totalCount = (Integer) countQuery.getSingleResult();
 
         Page2<UseCaseResult> page = new Page2<UseCaseResult>();
@@ -40,8 +30,6 @@ public class UseCaseQuery {
         page.setPageSize(pageSize);
         page.setTotalCount(totalCount);
 
-//        query.setParameter(1, page.getStartNum());
-//        query.setParameter(2, page.getEndNum());
         query.setFirstResult((pageNo - 1) * pageSize);
         query.setMaxResults(pageNo * pageSize);
 
@@ -52,6 +40,76 @@ public class UseCaseQuery {
         page.setList(resultList);
         return page;
     }
+    private Page2<UseCaseResult> getUseCaseResult(UseCaseParameter parameter, Integer pageNo, Integer pageSize, String findAll, String totalCountSQL) {
+        Query query = em.createNamedQuery(findAll);
+        Query countQuery = em.createNamedQuery(totalCountSQL);
+        String sqlString = query.unwrap(SQLQuery.class).getQueryString();
+        String countSql = countQuery.unwrap(SQLQuery.class).getQueryString();
+
+        Page2<UseCaseResult> page = new Page2<UseCaseResult>();
+        page.setPageNo(pageNo);
+        page.setPageSize(pageSize);
+
+        String sqlWhere = "";
+        Class useCaseParameterCla = parameter.getClass();
+        Field[] fs = useCaseParameterCla.getDeclaredFields();
+        try {
+            for(int i = 0 ; i < fs.length; i++){
+                Field f = fs[i];
+                f.setAccessible(true);
+                Object val = f.get(parameter);//得到此属性的值
+                String type = f.getType().toString();//得到此属性的类型
+                if(type.endsWith("String")){
+                    String fieldVal = (String) val;
+                    if(fieldVal != null && !"".equals(fieldVal)){
+                        sqlWhere += f.getName()+ " = :" + f.getName() + " and ";
+                    }
+                }
+
+            }
+        }catch (IllegalAccessException e){
+            e.printStackTrace();
+        }
+
+        if(sqlWhere.endsWith(" and ")){
+            sqlWhere = sqlWhere.substring(0,sqlWhere.lastIndexOf("and "));
+        }
+        if(!"".equals(sqlWhere)){
+            sqlString += " where "+sqlWhere;
+            countSql += " where "+sqlWhere;
+        }
+
+        Query countQ = em.createNativeQuery(countSql);
+        Query q = em.createNativeQuery(sqlString,"useCaseMapping");
+
+        try {
+            for(int i = 0 ; i < fs.length; i++){
+                Field f = fs[i];
+                f.setAccessible(true);
+                Object val = f.get(parameter);//得到此属性的值
+                String type = f.getType().toString();//得到此属性的类型
+                if(type.endsWith("String")){
+                    String fieldVal = (String) val;
+                    if(fieldVal != null && !"".equals(fieldVal)){
+                        countQ.setParameter(f.getName(),fieldVal);
+                        q.setParameter(f.getName(),fieldVal);
+                    }
+                }
+
+            }
+        }catch (IllegalAccessException e){
+            e.printStackTrace();
+        }
+
+        Integer totalCount = (Integer) countQ.getSingleResult();
+        page.setTotalCount(totalCount);
+
+        q.setFirstResult((pageNo - 1) * pageSize);
+        q.setMaxResults(pageNo * pageSize);
+        List<UseCaseResult> resultList = q.getResultList();
+        page.setList(resultList);
+        return page;
+    }
 
     public UseCaseResult findOne(String id) {
         Query query = em.createNamedQuery("findOne");
@@ -59,4 +117,6 @@ public class UseCaseQuery {
         UseCaseResult result = (UseCaseResult) query.getSingleResult();
         return result;
     }
+
+
 }

@@ -13,7 +13,7 @@ public class CaseSubject {
     }
 
     public CaseSubject(String value) {
-//        AssertionConcern.assertArgumentNotEmpty(value, "Subject cannot be empty");
+        AssertionConcern.assertArgumentNotEmpty(value, "Subject cannot be empty");
         this.value = value;
     }
 }

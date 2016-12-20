@@ -21,6 +21,10 @@ public class UseCaseResult {
     public UseCaseResult() {
     }
 
+    public UseCaseResult(String id, String subject) {
+        this.id = id;
+        this.subject = subject;
+    }
 
     public UseCaseResult(String id, String subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, String fromDate, String toDate, String contact) {
         this.id = id;
