@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -24,13 +26,12 @@ public class FileController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public FileResult upload(HttpServletRequest request) throws Exception {
 
-       /* MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
 
         InputStream inputStream = multipartFile.getInputStream();
-        String oriFileName = multipartFile.getOriginalFilename();*/
-        InputStream inputStream = new FileInputStream(new File("C:\\Users\\hongying.fu\\Desktop\\2016\\12\\20\\20161220164616128168.jpg"));
-        String oriFileName = ".jpg";
+        String oriFileName = multipartFile.getOriginalFilename();
+
         return fileApplicationService.upload(inputStream, oriFileName);
 
     }
