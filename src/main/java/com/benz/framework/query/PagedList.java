@@ -1,8 +1,8 @@
-package com.benz.usecase.query;
+package com.benz.framework.query;
 
 import java.util.List;
 
-public class Page2<T> {
+public class PagedList<T> {
 
 	//每页记录数(已知)
 	private int pageSize = 10;

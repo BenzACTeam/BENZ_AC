@@ -1,9 +1,11 @@
 package com.benz.usecase.query;
 
+import com.benz.framework.query.QueryParameter;
+
 /**
  * Created by hongying.fu on 12/16/2016.
  */
-public class UseCaseParameter {
+public class UseCaseParameter extends QueryParameter {
     private String subject;
     private String value;
 

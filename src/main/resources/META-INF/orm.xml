@@ -21,7 +21,7 @@
 
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
 
-    <named-native-query name="totalCount">
+    <named-native-query name="countUseCase">
         <query><![CDATA[
             select
                 count(*)
@@ -30,7 +30,7 @@
         ]]></query>
     </named-native-query>
 
-    <named-native-query name="findAll" result-set-mapping="useCaseMapping">
+    <named-native-query name="searchUseCase" result-set-mapping="useCaseMapping">
         <query><![CDATA[
             select
                 id as id,
@@ -51,7 +51,7 @@
         ]]></query>
     </named-native-query>
 
-    <named-native-query name="findOne" result-set-mapping="useCaseMapping">
+    <named-native-query name="findByIdUseCase" result-set-mapping="useCaseMapping">
         <query><![CDATA[
             select
                 id as id,
