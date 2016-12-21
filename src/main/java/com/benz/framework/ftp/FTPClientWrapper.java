@@ -1,5 +1,6 @@
 package com.benz.framework.ftp;
 
+import com.benz.framework.ioc.SpringBootApplicationContext;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -14,8 +15,9 @@ public class FTPClientWrapper {
 
     private FTPClient ftp;
 
-    public String uploadToServer(InputStream inputStream, String directoryPath, String fileName) throws Exception {
-        FTPParameter parameter = new FTPParameter();
+    private FTPParameter parameter = SpringBootApplicationContext.getBean(FTPParameter.class);
+
+    public String uploadToServer(InputStream inputStream, String fileName, String directoryPath) throws Exception {
         try {
             connectFtp(parameter.getUrl(), parameter.getPort(), parameter.getUsername(), parameter.getPassword());
 

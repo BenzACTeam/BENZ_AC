@@ -3,13 +3,14 @@ package com.benz.usecase.query;
 import com.benz.framework.query.BaseQuery;
 import com.benz.framework.query.PagedList;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 
 /**
  * Created by hongying.fu on 12/15/2016.
  */
-@Component
+@Service
 public class UseCaseQuery extends BaseQuery {
 
     public PagedList<UseCaseResult> findAll(UseCaseParameter parameter, Integer pageNo, Integer pageSize)throws IllegalAccessException {
