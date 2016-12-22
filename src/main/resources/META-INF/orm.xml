@@ -15,11 +15,48 @@
         <attributes >
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
+            <one-to-one name="result" >
+                <join-column name="result_id" referenced-column-name="id" />
+            </one-to-one>
+            <one-to-one name="analysisModel" >
+                <join-column name="analysis_model_id" referenced-column-name="id" />
+            </one-to-one>
         </attributes>
         <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
     </entity>
 
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
+
+    <entity class="com.benz.usecase.domain.ResultFile">
+        <attributes>
+            <id name="id"></id>
+             <!--<many-to-one name="result">
+                 <join-column name="result_id" referenced-column-name="id"></join-column>
+                 <cascade>CascadeType.ALL</cascade>
+             </many-to-one>-->
+        </attributes>
+    </entity>
+
+    <entity class="com.benz.usecase.domain.Result">
+        <attributes>
+            <id name="id"></id>
+            <!--<one-to-many name="files" target-entity="com.benz.usecase.domain.ResultFile" mapped-by="result" fetch="EAGER">
+                <cascade>CascadeType.ALL</cascade>
+            </one-to-many>-->
+        </attributes>
+    </entity>
+
+    <entity class="com.benz.usecase.domain.AnalysisModel">
+        <attributes>
+            <id name="id"></id>
+        </attributes>
+    </entity>
+
+    <entity class="com.benz.usecase.domain.AnalysisModelFile">
+        <attributes>
+            <id name="id"></id>
+        </attributes>
+    </entity>
 
     <named-native-query name="countUseCase">
         <query><![CDATA[

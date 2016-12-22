@@ -5,6 +5,9 @@ import com.benz.usecase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by paulliu on 2016/12/12.
@@ -16,15 +19,33 @@ public class UseCaseApplicationService {
     private UseCaseRepository useCaseRepository;
 
     public String createUseCase(UseCaseCreateCommand command) {
+        List<ResultFile> list = new ArrayList<ResultFile>();
+        Result result = new Result(command.getResultText(),list);
+
+        List<ResultFileCreateCommand> resultFileCreateCommands = command.getResultFiles();
+        for (ResultFileCreateCommand resultFileCreateCommand : resultFileCreateCommands){
+            ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
+            result.addFile(resultFile);
+        }
+
+        List<AnalysisModelFile> analysisModelFileList = new ArrayList<AnalysisModelFile>();
+        AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(),analysisModelFileList);
+
+        List<AnalysisModelFileCreateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
+        for(AnalysisModelFileCreateCommand analysisModelFileCommand : analysisModelFileCommands){
+            AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
+            analysisModel.addFile(analysisModelFile);
+        }
+
         UseCase useCase =
                 new UseCase(
                         new CaseSubject(command.getSubject()),
                         command.getValue(),
                         command.getScenario(),
-                        command.getResult(),
+                        result,
                         command.getDataSource(),
                         command.getDataTypeDescription(),
-                        command.getAnalysisModel(),
+                        analysisModel,
                         command.getContributionBU(),
                         command.getStage(),
                         new TimeFrame(command.getFromDate(), command.getToDate()),

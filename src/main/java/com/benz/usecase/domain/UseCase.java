@@ -2,19 +2,22 @@ package com.benz.usecase.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
-@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class UseCase {
     private String id;
     private CaseSubject subject;
     private String value;
     private String scenario;
-    private String result;
+    private Result result;
     private String dataSource;
     private String dataTypeDescription;
-    private String analysisModel;
+    private AnalysisModel analysisModel;
     private String contributionBU;
     private String stage;
     private TimeFrame timeFrame;
@@ -52,11 +55,11 @@ public class UseCase {
         this.scenario = scenario;
     }
 
-    public String getResult() {
+    public Result getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(Result result) {
         this.result = result;
     }
 
@@ -76,11 +79,11 @@ public class UseCase {
         this.dataTypeDescription = dataTypeDescription;
     }
 
-    public String getAnalysisModel() {
+    public AnalysisModel getAnalysisModel() {
         return analysisModel;
     }
 
-    public void setAnalysisModel(String analysisModel) {
+    public void setAnalysisModel(AnalysisModel analysisModel) {
         this.analysisModel = analysisModel;
     }
 
@@ -119,7 +122,7 @@ public class UseCase {
     public UseCase() {
     }
 
-    public UseCase(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+    public UseCase(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, AnalysisModel analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
 
         this.id = DomainRegistry.repository().nextIdentity();
         this.subject = subject;
@@ -137,17 +140,24 @@ public class UseCase {
     }
 
     public void create() {
+        if(result != null){
+            result.create();
+        }
+
+        if(analysisModel != null){
+            analysisModel.create();
+        }
         DomainRegistry.repository().save(this);
     }
 
-    public void update(CaseSubject subject, String value, String scenario, String result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+    public void update(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
         setSubject(subject);
         setValue(value);
         setScenario(scenario);
         setResult(result);
         setDataSource(dataSource);
         setDataTypeDescription(dataTypeDescription);
-        setAnalysisModel(analysisModel);
+//        setAnalysisModel(analysisModel);
         setContributionBU(contributionBU);
         setStage(stage);
         setTimeFrame(timeFrame);

@@ -1,5 +1,7 @@
 package com.benz.usecase.application;
 
+import java.util.List;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
@@ -8,15 +10,37 @@ public class UseCaseCreateCommand {
     private String subject;
     private String value;
     private String scenario;
-    private String result;
+    private String resultText;
+    private List<ResultFileCreateCommand> resultFiles;
     private String dataSource;
     private String dataTypeDescription;
-    private String analysisModel;
+    private String analysisModelText;
+    private List<AnalysisModelFileCreateCommand> analysisModelFiles;
     private String contributionBU;
     private String stage;
     private String fromDate;
     private String toDate;
     private String contact;
+
+    public UseCaseCreateCommand() {
+    }
+
+    public UseCaseCreateCommand(String subject, String value, String scenario, String resultText, List<ResultFileCreateCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<AnalysisModelFileCreateCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
+        this.subject = subject;
+        this.value = value;
+        this.scenario = scenario;
+        this.resultText = resultText;
+        this.resultFiles = resultFiles;
+        this.dataSource = dataSource;
+        this.dataTypeDescription = dataTypeDescription;
+        this.analysisModelText = analysisModelText;
+        this.analysisModelFiles = analysisModelFiles;
+        this.contributionBU = contributionBU;
+        this.stage = stage;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.contact = contact;
+    }
 
     public String getSubject() {
         return subject;
@@ -42,12 +66,20 @@ public class UseCaseCreateCommand {
         this.scenario = scenario;
     }
 
-    public String getResult() {
-        return result;
+    public String getResultText() {
+        return resultText;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setResultText(String resultText) {
+        this.resultText = resultText;
+    }
+
+    public List<ResultFileCreateCommand> getResultFiles() {
+        return resultFiles;
+    }
+
+    public void setResultFiles(List<ResultFileCreateCommand> resultFiles) {
+        this.resultFiles = resultFiles;
     }
 
     public String getDataSource() {
@@ -66,12 +98,20 @@ public class UseCaseCreateCommand {
         this.dataTypeDescription = dataTypeDescription;
     }
 
-    public String getAnalysisModel() {
-        return analysisModel;
+    public String getAnalysisModelText() {
+        return analysisModelText;
     }
 
-    public void setAnalysisModel(String analysisModel) {
-        this.analysisModel = analysisModel;
+    public void setAnalysisModelText(String analysisModelText) {
+        this.analysisModelText = analysisModelText;
+    }
+
+    public List<AnalysisModelFileCreateCommand> getAnalysisModelFiles() {
+        return analysisModelFiles;
+    }
+
+    public void setAnalysisModelFiles(List<AnalysisModelFileCreateCommand> analysisModelFiles) {
+        this.analysisModelFiles = analysisModelFiles;
     }
 
     public String getContributionBU() {

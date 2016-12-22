@@ -22,8 +22,9 @@ public class UseCaseController {
     private UseCaseQuery useCaseQuery;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void create( UseCaseCreateCommand aCommand) {
+    public void create(@RequestBody UseCaseCreateCommand aCommand) {
         useCaseApplicationService.createUseCase(aCommand);
+
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
