@@ -12,7 +12,13 @@ import java.util.Random;
  * Created by hongying.fu on 12/21/2016.
  */
 public class FTPUpload {
-    public String createNewFileName(String oriFileName) {
+    public String upload(InputStream inputStream, String originFileName) throws Exception {
+        String destDirectoryPath = computeDestDirectoryPath();
+        String newFileName = createNewFileName(originFileName);
+        return new FTPClientWrapper().uploadToServer(inputStream, newFileName, destDirectoryPath);
+    }
+
+    private String createNewFileName(String oriFileName) {
         String newFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
@@ -23,7 +29,7 @@ public class FTPUpload {
         return newFileName;
     }
 
-    public String computeDestDirectoryPath() {
+    private String computeDestDirectoryPath() {
         Date date = new Date();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -36,11 +42,5 @@ public class FTPUpload {
         String dateString = sdfDate.format(date);
 
         return File.separator + year + File.separator + month + File.separator + dateString + File.separator;
-    }
-
-    public String upload(InputStream inputStream, String originFileName) throws Exception {
-        String destDirectoryPath = computeDestDirectoryPath();
-        String newFileName = createNewFileName(originFileName);
-        return new FTPClientWrapper().uploadToServer(inputStream, newFileName, destDirectoryPath);
     }
 }
