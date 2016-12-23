@@ -15,18 +15,21 @@
         <attributes >
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
-            <one-to-one name="result" >
-                <join-column name="result_id" referenced-column-name="id" />
-            </one-to-one>
-            <one-to-one name="analysisModel" >
-                <join-column name="analysis_model_id" referenced-column-name="id" />
-            </one-to-one>
+            <embedded name="result"></embedded>
+            <embedded name="analysisModel"></embedded>
         </attributes>
         <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
     </entity>
 
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
 
+    <embeddable class="com.benz.usecase.domain.Result">
+        <attributes>
+            <basic name="text">
+                <column name="result_text" />
+            </basic>
+        </attributes>
+    </embeddable>
     <entity class="com.benz.usecase.domain.ResultFile">
         <attributes>
             <id name="id"></id>
@@ -36,21 +39,13 @@
              </many-to-one>-->
         </attributes>
     </entity>
-
-    <entity class="com.benz.usecase.domain.Result">
+    <embeddable class="com.benz.usecase.domain.AnalysisModel">
         <attributes>
-            <id name="id"></id>
-            <!--<one-to-many name="files" target-entity="com.benz.usecase.domain.ResultFile" mapped-by="result" fetch="EAGER">
-                <cascade>CascadeType.ALL</cascade>
-            </one-to-many>-->
+            <basic name="text">
+                <column name="analysis_model_text" />
+            </basic>
         </attributes>
-    </entity>
-
-    <entity class="com.benz.usecase.domain.AnalysisModel">
-        <attributes>
-            <id name="id"></id>
-        </attributes>
-    </entity>
+    </embeddable>
 
     <entity class="com.benz.usecase.domain.AnalysisModelFile">
         <attributes>
@@ -91,43 +86,46 @@
     <named-native-query name="findByIdUseCase" result-set-mapping="useCaseMapping">
         <query><![CDATA[
             select
-                id as id,
+                uc.id as id,
                 subject,
                 value,
                 scenario,
-                result,
+                result_text,
                 data_source,
                 data_type_description,
-                analysis_model,
+                analysis_model_text,
                 contributionbu,
                 stage,
                 afrom_value,
                 ato_value,
-                contact
+                contact,
+                rf.url as url
             from
-                use_case
+                use_case uc join result_file rf on uc.id = rf.use_case_id
             where
-                id = ?
+                uc.id = ?
 
         ]]></query>
     </named-native-query>
 
-    <sql-result-set-mapping name="useCaseMapping">
-        <constructor-result target-class="com.benz.usecase.query.UseCaseResult">
-            <column name="id"></column>
-            <column name="subject"></column>
-            <column name="value"></column>
-            <column name="scenario"></column>
-            <column name="result"></column>
-            <column name="data_source"></column>
-            <column name="data_type_description"></column>
-            <column name="analysis_model"></column>
-            <column name="contributionbu"></column>
-            <column name="stage"></column>
-            <column name="afrom_value" class="java.lang.String"></column>
-            <column name="ato_value" class="java.lang.String"></column>
-            <column name="contact"></column>
-        </constructor-result>
-    </sql-result-set-mapping>
+    <!--<sql-result-set-mapping name="useCaseMapping">-->
+
+        <!--<constructor-result target-class="com.benz.usecase.query.UseCaseResult">-->
+            <!--<column name="id"></column>-->
+            <!--<column name="subject"></column>-->
+            <!--<column name="value"></column>-->
+            <!--<column name="scenario"></column>-->
+            <!--<column name="result_text"></column>-->
+            <!--<column name="data_source"></column>-->
+            <!--<column name="data_type_description"></column>-->
+            <!--<column name="analysis_model_text"></column>-->
+            <!--<column name="contributionbu"></column>-->
+            <!--<column name="stage"></column>-->
+            <!--<column name="afrom_value" class="java.lang.String"></column>-->
+            <!--<column name="ato_value" class="java.lang.String"></column>-->
+            <!--<column name="contact"></column>-->
+            <!--<column name="url"></column>-->
+        <!--</constructor-result>-->
+    <!--</sql-result-set-mapping>-->
 
 </entity-mappings>

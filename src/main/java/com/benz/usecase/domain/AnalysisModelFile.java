@@ -1,5 +1,7 @@
 package com.benz.usecase.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,8 +14,9 @@ public class AnalysisModelFile {
     private String fileName;
     private String url;
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="analysis_model_id", referencedColumnName = "id")
-    private AnalysisModel analysisModel;
+    @JoinColumn(name="use_case_id", referencedColumnName = "id")
+    @JsonBackReference
+    private UseCase useCase;
 
     public AnalysisModelFile() {
     }
@@ -24,11 +27,11 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
-    public AnalysisModelFile(String fileName, String url, AnalysisModel analysisModel) {
+    public AnalysisModelFile(String id, String fileName, String url, UseCase useCase) {
         this.id = DomainRegistry.analysisModelRespository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
-        this.analysisModel = analysisModel;
+        this.useCase = useCase;
     }
 
     public String getId() {
@@ -55,14 +58,15 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
-    public AnalysisModel getAnalysisModel() {
-        return analysisModel;
+    public UseCase getUseCase() {
+        return useCase;
     }
 
-    public void setAnalysisModel(AnalysisModel analysisModel) {
-        this.analysisModel = analysisModel;
-        if(!analysisModel.getFiles().contains(this)){
-            analysisModel.getFiles().add(this);
+    public void setUseCase(UseCase useCase) {
+        this.useCase = useCase;
+        if(!useCase.getAnalysisModel().getFiles().contains(this)){
+            useCase.getAnalysisModel().getFiles().add(this);
         }
     }
+
 }

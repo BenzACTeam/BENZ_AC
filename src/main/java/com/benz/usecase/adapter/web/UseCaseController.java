@@ -4,6 +4,7 @@ import com.benz.usecase.application.UseCaseApplicationService;
 import com.benz.usecase.application.UseCaseCreateCommand;
 import com.benz.usecase.application.UseCaseUpdateCommand;
 import com.benz.framework.query.PagedList;
+import com.benz.usecase.domain.UseCase;
 import com.benz.usecase.query.UseCaseParameter;
 import com.benz.usecase.query.UseCaseQuery;
 import com.benz.usecase.query.UseCaseResult;
@@ -28,7 +29,7 @@ public class UseCaseController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public void update(@PathVariable String id,UseCaseUpdateCommand aCommand) {
+    public void update(@PathVariable String id,@RequestBody UseCaseUpdateCommand aCommand) {
         aCommand.setId(id);
         useCaseApplicationService.updateUseCase(aCommand);
     }
@@ -61,5 +62,9 @@ public class UseCaseController {
         return result;
     }
 
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
+    public UseCase findOneById(@PathVariable String id) {
+        return useCaseApplicationService.findById(id);
+    }
 
 }

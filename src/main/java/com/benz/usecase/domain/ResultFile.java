@@ -1,9 +1,9 @@
 package com.benz.usecase.domain;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -15,9 +15,10 @@ public class ResultFile {
     private String id;
     private String fileName;
     private String url;
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="result_id", referencedColumnName = "id")
-    private Result result;
+    @ManyToOne(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="use_case_id", referencedColumnName = "id")
+    @JsonBackReference
+    private UseCase useCase;
 
     public ResultFile() {
     }
@@ -28,11 +29,11 @@ public class ResultFile {
         this.url = url;
     }
 
-    public ResultFile(String fileName, String url, Result result) {
+    public ResultFile(String id, String fileName, String url, UseCase useCase) {
         this.id = DomainRegistry.resultRepository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
-        this.result = result;
+        this.useCase = useCase;
     }
 
     public String getId() {
@@ -59,16 +60,23 @@ public class ResultFile {
         this.url = url;
     }
 
-    public Result getResult() {
-        return result;
+    public UseCase getUseCase() {
+        return useCase;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
-        if(!result.getFiles().contains(this)){
-            result.getFiles().add(this);
-        }
+    public void setUseCase(UseCase useCase) {
+        this.useCase = useCase;
+//        if(!useCase.getResult().getFiles().contains(this)){
+//            useCase.getResult().getFiles().add(this);
+//        }
     }
 
-
+    @Override
+    public String toString() {
+        return "ResultFile{" +
+                "id='" + id + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

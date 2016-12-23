@@ -2,12 +2,12 @@ package com.benz.usecase.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by paulliu on 2016/12/12.
  */
+
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class UseCase {
     private String id;
@@ -140,28 +140,22 @@ public class UseCase {
     }
 
     public void create() {
-        if(result != null){
-            result.create();
-        }
-
-        if(analysisModel != null){
-            analysisModel.create();
-        }
         DomainRegistry.repository().save(this);
     }
 
-    public void update(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, String analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+    public void update(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, AnalysisModel analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
         setSubject(subject);
         setValue(value);
         setScenario(scenario);
         setResult(result);
         setDataSource(dataSource);
         setDataTypeDescription(dataTypeDescription);
-//        setAnalysisModel(analysisModel);
+        setAnalysisModel(analysisModel);
         setContributionBU(contributionBU);
         setStage(stage);
         setTimeFrame(timeFrame);
         setContact(contact);
+
         DomainRegistry.repository().save(this);
     }
 
@@ -169,5 +163,47 @@ public class UseCase {
         DomainRegistry.repository().delete(id);
     }
 
+    public void addResultFile(ResultFile resultFile){
+        this.result.getFiles().add(resultFile);
+        if(resultFile.getUseCase() != this){
+            resultFile.setUseCase(this);
+        }
+    }
 
+    public void addAnalysisModelFile(AnalysisModelFile analysisModelFile){
+        this.analysisModel.getFiles().add(analysisModelFile);
+        if(analysisModelFile.getUseCase() != this){
+            analysisModelFile.setUseCase(this);
+        }
+    }
+
+    public void deleteResult() {
+        if(this.result != null){
+            this.result.deleteResultFile(this.id);
+        }
+    }
+
+    public void deleteAnalysisModel() {
+        if(this.analysisModel != null){
+            this.analysisModel.delelteFiles(this.id);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "UseCase{" +
+                "id='" + id + '\'' +
+                ", subject=" + subject +
+                ", value='" + value + '\'' +
+                ", scenario='" + scenario + '\'' +
+                ", result=" + result +
+                ", dataSource='" + dataSource + '\'' +
+                ", dataTypeDescription='" + dataTypeDescription + '\'' +
+                ", analysisModel=" + analysisModel +
+                ", contributionBU='" + contributionBU + '\'' +
+                ", stage='" + stage + '\'' +
+                ", timeFrame=" + timeFrame +
+                ", contact='" + contact + '\'' +
+                '}';
+    }
 }

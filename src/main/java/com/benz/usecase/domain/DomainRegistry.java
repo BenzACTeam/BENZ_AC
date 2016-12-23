@@ -11,12 +11,12 @@ public class DomainRegistry {
         return SpringBootApplicationContext.getBean(UseCaseRepository.class);
     }
 
-    public static ResultRepository resultRepository() {
-        return SpringBootApplicationContext.getBean(ResultRepository.class);
+    public static ResultFileRepository resultRepository() {
+        return SpringBootApplicationContext.getBean(ResultFileRepository.class);
     }
 
-    public static AnalysisModelRespository analysisModelRespository() {
-        return SpringBootApplicationContext.getBean(AnalysisModelRespository.class);
+    public static AnalysisModelFileRespository analysisModelRespository() {
+        return SpringBootApplicationContext.getBean(AnalysisModelFileRespository.class);
     }
 
 

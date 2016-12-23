@@ -1,5 +1,7 @@
 package com.benz.usecase.application;
 
+import java.util.List;
+
 /**
  * Created by paulliu on 2016/12/13.
  */
@@ -9,15 +11,38 @@ public class UseCaseUpdateCommand {
     private String subject;
     private String value;
     private String scenario;
-    private String result;
+    private String resultText;
+    private List<ResultFileUpdateCommand> resultFiles;
     private String dataSource;
     private String dataTypeDescription;
-    private String analysisModel;
+    private String analysisModelText;
+    private List<AnalysisModelFileUpdateCommand> analysisModelFiles;
     private String contributionBU;
     private String stage;
     private String fromDate;
     private String toDate;
     private String contact;
+
+    public UseCaseUpdateCommand() {
+    }
+
+    public UseCaseUpdateCommand(String id, String subject, String value, String scenario, String resultText, List<ResultFileUpdateCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<AnalysisModelFileUpdateCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
+        this.id = id;
+        this.subject = subject;
+        this.value = value;
+        this.scenario = scenario;
+        this.resultText = resultText;
+        this.resultFiles = resultFiles;
+        this.dataSource = dataSource;
+        this.dataTypeDescription = dataTypeDescription;
+        this.analysisModelText = analysisModelText;
+        this.analysisModelFiles = analysisModelFiles;
+        this.contributionBU = contributionBU;
+        this.stage = stage;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.contact = contact;
+    }
 
     public String getId() {
         return id;
@@ -51,12 +76,20 @@ public class UseCaseUpdateCommand {
         this.scenario = scenario;
     }
 
-    public String getResult() {
-        return result;
+    public String getResultText() {
+        return resultText;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setResultText(String resultText) {
+        this.resultText = resultText;
+    }
+
+    public List<ResultFileUpdateCommand> getResultFiles() {
+        return resultFiles;
+    }
+
+    public void setResultFiles(List<ResultFileUpdateCommand> resultFiles) {
+        this.resultFiles = resultFiles;
     }
 
     public String getDataSource() {
@@ -75,12 +108,20 @@ public class UseCaseUpdateCommand {
         this.dataTypeDescription = dataTypeDescription;
     }
 
-    public String getAnalysisModel() {
-        return analysisModel;
+    public String getAnalysisModelText() {
+        return analysisModelText;
     }
 
-    public void setAnalysisModel(String analysisModel) {
-        this.analysisModel = analysisModel;
+    public void setAnalysisModelText(String analysisModelText) {
+        this.analysisModelText = analysisModelText;
+    }
+
+    public List<AnalysisModelFileUpdateCommand> getAnalysisModelFiles() {
+        return analysisModelFiles;
+    }
+
+    public void setAnalysisModelFiles(List<AnalysisModelFileUpdateCommand> analysisModelFiles) {
+        this.analysisModelFiles = analysisModelFiles;
     }
 
     public String getContributionBU() {

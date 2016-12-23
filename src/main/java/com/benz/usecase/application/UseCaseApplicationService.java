@@ -19,23 +19,12 @@ public class UseCaseApplicationService {
     private UseCaseRepository useCaseRepository;
 
     public String createUseCase(UseCaseCreateCommand command) {
+
         List<ResultFile> list = new ArrayList<ResultFile>();
         Result result = new Result(command.getResultText(),list);
 
-        List<ResultFileCreateCommand> resultFileCreateCommands = command.getResultFiles();
-        for (ResultFileCreateCommand resultFileCreateCommand : resultFileCreateCommands){
-            ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
-            result.addFile(resultFile);
-        }
-
         List<AnalysisModelFile> analysisModelFileList = new ArrayList<AnalysisModelFile>();
         AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(),analysisModelFileList);
-
-        List<AnalysisModelFileCreateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
-        for(AnalysisModelFileCreateCommand analysisModelFileCommand : analysisModelFileCommands){
-            AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
-            analysisModel.addFile(analysisModelFile);
-        }
 
         UseCase useCase =
                 new UseCase(
@@ -52,20 +41,62 @@ public class UseCaseApplicationService {
                         command.getContact()
                 );
 
+        List<ResultFileCreateCommand> resultFileCreateCommands = command.getResultFiles();
+        if(resultFileCreateCommands != null && resultFileCreateCommands.size() > 0){
+            for (ResultFileCreateCommand resultFileCreateCommand : resultFileCreateCommands){
+                ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
+                useCase.addResultFile(resultFile);
+            }
+        }
+
+        List<AnalysisModelFileCreateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
+        if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
+            for(AnalysisModelFileCreateCommand analysisModelFileCommand : analysisModelFileCommands){
+                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
+                useCase.addAnalysisModelFile(analysisModelFile);
+            }
+        }
+
         useCase.create();
         return useCase.getId();
     }
 
     public void updateUseCase(UseCaseUpdateCommand command) {
         UseCase useCase = existing(command.getId());
+        System.out.println("useCase: " + useCase);
+        useCase.deleteResult();
+        useCase.deleteAnalysisModel();
+
+        Result result = useCase.getResult();
+        result.setText(command.getResultText());
+
+        List<ResultFileUpdateCommand> resultFileCreateCommands = command.getResultFiles();
+        if(resultFileCreateCommands != null && resultFileCreateCommands.size() > 0){
+            for (ResultFileUpdateCommand resultFileCreateCommand : resultFileCreateCommands){
+                ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
+                useCase.addResultFile(resultFile);
+            }
+        }
+
+        AnalysisModel analysisModel = useCase.getAnalysisModel();
+        analysisModel.setText(command.getAnalysisModelText());
+
+        List<AnalysisModelFileUpdateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
+        if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
+            for(AnalysisModelFileUpdateCommand analysisModelFileCommand : analysisModelFileCommands){
+                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
+                useCase.addAnalysisModelFile(analysisModelFile);
+            }
+        }
+
         useCase.update(
                 new CaseSubject(command.getSubject()),
                 command.getValue(),
                 command.getScenario(),
-                command.getResult(),
+                result,
                 command.getDataSource(),
                 command.getDataTypeDescription(),
-                command.getAnalysisModel(),
+                analysisModel,
                 command.getContributionBU(),
                 command.getStage(),
                 new TimeFrame(command.getFromDate(), command.getToDate()),
@@ -79,10 +110,14 @@ public class UseCaseApplicationService {
 
     private UseCase existing(String id) {
         UseCase useCase = useCaseRepository.getOne(id);
-        System.out.println(useCase);
         AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
         return useCase;
     }
 
 
+    public UseCase findById(String id) {
+        UseCase useCase = useCaseRepository.getOne(id);
+        System.out.println(useCase);
+        return useCase;
+    }
 }
