@@ -1,8 +1,5 @@
 package com.benz.usecase.query;
 
-import com.benz.usecase.domain.AnalysisModelFile;
-import com.benz.usecase.domain.ResultFile;
-
 import java.util.List;
 
 /**
@@ -22,24 +19,13 @@ public class UseCaseResult {
     private String fromDate;
     private String toDate;
     private String contact;
-    private List<ResultFile> resultFiles;
-    private List<AnalysisModelFile> analysisModelFiles;
+    private List<FileResult> resultFiles;
+    private List<FileResult> analysisModelFiles;
 
     public UseCaseResult() {
     }
 
-    public UseCaseResult(String id, String subject) {
-        this.id = id;
-        this.subject = subject;
-    }
-
-    public UseCaseResult(String id, String subject, List<ResultFile> resultFiles) {
-        this.id = id;
-        this.subject = subject;
-        this.resultFiles = resultFiles;
-    }
-
-    public UseCaseResult(String id, String subject, String value, String scenario, String resultText, String dataSource, String dataTypeDescription, String analysisModelText, String contributionBU, String stage, String fromDate, String toDate, String contact, List<ResultFile> resultFiles) {
+    public UseCaseResult(String id, String subject, String value, String scenario, String resultText, String dataSource, String dataTypeDescription, String analysisModelText, String contributionBU, String stage, String fromDate, String toDate, String contact, List<FileResult> resultFiles, List<FileResult> analysisModelFiles) {
         this.id = id;
         this.subject = subject;
         this.value = value;
@@ -54,6 +40,7 @@ public class UseCaseResult {
         this.toDate = toDate;
         this.contact = contact;
         this.resultFiles = resultFiles;
+        this.analysisModelFiles = analysisModelFiles;
     }
 
     public String getId() {
@@ -152,11 +139,11 @@ public class UseCaseResult {
         this.resultText = resultText;
     }
 
-    public List<ResultFile> getResultFiles() {
+    public List<FileResult> getResultFiles() {
         return resultFiles;
     }
 
-    public void setResultFiles(List<ResultFile> resultFiles) {
+    public void setResultFiles(List<FileResult> resultFiles) {
         this.resultFiles = resultFiles;
     }
 
@@ -168,11 +155,11 @@ public class UseCaseResult {
         this.analysisModelText = analysisModelText;
     }
 
-    public List<AnalysisModelFile> getAnalysisModelFiles() {
+    public List<FileResult> getAnalysisModelFiles() {
         return analysisModelFiles;
     }
 
-    public void setAnalysisModelFiles(List<AnalysisModelFile> analysisModelFiles) {
+    public void setAnalysisModelFiles(List<FileResult> analysisModelFiles) {
         this.analysisModelFiles = analysisModelFiles;
     }
 }

@@ -19,10 +19,10 @@ public class UseCaseApplicationService {
 
     public String createUseCase(UseCaseCreateCommand command) {
 
-        List<ResultFile> list = new ArrayList<ResultFile>();
+        List<ResultFile> list = new ArrayList<>();
         Result result = new Result(command.getResultText(),list);
 
-        List<AnalysisModelFile> analysisModelFileList = new ArrayList<AnalysisModelFile>();
+        List<AnalysisModelFile> analysisModelFileList = new ArrayList<>();
         AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(),analysisModelFileList);
 
         UseCase useCase =
@@ -40,17 +40,17 @@ public class UseCaseApplicationService {
                         command.getContact()
                 );
 
-        List<ResultFileCreateCommand> resultFileCreateCommands = command.getResultFiles();
-        if(resultFileCreateCommands != null && resultFileCreateCommands.size() > 0){
-            for (ResultFileCreateCommand resultFileCreateCommand : resultFileCreateCommands){
-                ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
+        List<FileCommand> fileCommands = command.getResultFiles();
+        if(fileCommands != null && fileCommands.size() > 0){
+            for (FileCommand fileCommand : fileCommands){
+                ResultFile resultFile = new ResultFile(fileCommand.getFileName(), fileCommand.getUrl());
                 useCase.addResultFile(resultFile);
             }
         }
 
-        List<AnalysisModelFileCreateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
+        List<FileCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
         if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
-            for(AnalysisModelFileCreateCommand analysisModelFileCommand : analysisModelFileCommands){
+            for(FileCommand analysisModelFileCommand : analysisModelFileCommands){
                 AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
                 useCase.addAnalysisModelFile(analysisModelFile);
             }
@@ -62,16 +62,15 @@ public class UseCaseApplicationService {
 
     public void updateUseCase(UseCaseUpdateCommand command) {
         UseCase useCase = existing(command.getId());
-        System.out.println("useCase: " + useCase);
         useCase.deleteResult();
         useCase.deleteAnalysisModel();
 
         Result result = useCase.getResult();
         result.setText(command.getResultText());
 
-        List<ResultFileUpdateCommand> resultFileCreateCommands = command.getResultFiles();
+        List<FileCommand> resultFileCreateCommands = command.getResultFiles();
         if(resultFileCreateCommands != null && resultFileCreateCommands.size() > 0){
-            for (ResultFileUpdateCommand resultFileCreateCommand : resultFileCreateCommands){
+            for (FileCommand resultFileCreateCommand : resultFileCreateCommands){
                 ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
                 useCase.addResultFile(resultFile);
             }
@@ -80,9 +79,9 @@ public class UseCaseApplicationService {
         AnalysisModel analysisModel = useCase.getAnalysisModel();
         analysisModel.setText(command.getAnalysisModelText());
 
-        List<AnalysisModelFileUpdateCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
+        List<FileCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
         if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
-            for(AnalysisModelFileUpdateCommand analysisModelFileCommand : analysisModelFileCommands){
+            for(FileCommand analysisModelFileCommand : analysisModelFileCommands){
                 AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
                 useCase.addAnalysisModelFile(analysisModelFile);
             }

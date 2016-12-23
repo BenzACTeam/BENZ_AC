@@ -10,14 +10,14 @@ import javax.persistence.ManyToOne;
 /**
  * Created by hongying.fu on 12/22/2016.
  */
-public class ResultFileCreateCommand {
+public class FileCommand {
     private String fileName;
     private String url;
 
-    public ResultFileCreateCommand() {
+    public FileCommand() {
     }
 
-    public ResultFileCreateCommand(String fileName, String url) {
+    public FileCommand(String fileName, String url) {
         this.fileName = fileName;
         this.url = url;
     }
@@ -30,7 +30,7 @@ public class ResultFileCreateCommand {
         this.url = url;
     }
 
-    public ResultFileCreateCommand(String fileName) {
+    public FileCommand(String fileName) {
         this.fileName = fileName;
     }
 

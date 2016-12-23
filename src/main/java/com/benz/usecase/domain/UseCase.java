@@ -2,8 +2,6 @@ package com.benz.usecase.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-
 /**
  * Created by paulliu on 2016/12/12.
  */
@@ -185,7 +183,7 @@ public class UseCase {
 
     public void deleteAnalysisModel() {
         if(this.analysisModel != null){
-            this.analysisModel.delelteFiles(this.id);
+            this.analysisModel.deleteFiles(this.id);
         }
     }
 

@@ -1,16 +1,13 @@
-package com.benz.usecase.application;
+package com.benz.usecase.query;
 
 /**
- * Created by hongying.fu on 12/22/2016.
+ * Created by paulliu on 2016/12/23.
  */
-public class AnalysisModelFileUpdateCommand {
+public class FileResult {
     private String fileName;
     private String url;
 
-    public AnalysisModelFileUpdateCommand() {
-    }
-
-    public AnalysisModelFileUpdateCommand(String fileName, String url) {
+    public FileResult(String fileName, String url) {
         this.fileName = fileName;
         this.url = url;
     }

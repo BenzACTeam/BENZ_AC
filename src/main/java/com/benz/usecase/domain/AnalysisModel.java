@@ -44,7 +44,7 @@ public class AnalysisModel {
         this.files = files;
     }
 
-    public void delelteFiles(String id) {
+    public void deleteFiles(String id) {
         DomainRegistry.analysisModelRespository().deleteByUseCaseId(id);
     }
 }

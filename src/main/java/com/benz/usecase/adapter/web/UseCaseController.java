@@ -1,10 +1,9 @@
 package com.benz.usecase.adapter.web;
 
+import com.benz.framework.query.PagedList;
 import com.benz.usecase.application.UseCaseApplicationService;
 import com.benz.usecase.application.UseCaseCreateCommand;
 import com.benz.usecase.application.UseCaseUpdateCommand;
-import com.benz.framework.query.PagedList;
-import com.benz.usecase.domain.UseCase;
 import com.benz.usecase.query.UseCaseParameter;
 import com.benz.usecase.query.UseCaseQuery;
 import com.benz.usecase.query.UseCaseResult;

@@ -45,11 +45,4 @@ public class Result {
         DomainRegistry.resultRepository().deleteByUseCaseId(useCaseId);
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "text='" + text + '\'' +
-                ", files=" + files +
-                '}';
-    }
 }

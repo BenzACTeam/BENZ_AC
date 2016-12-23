@@ -21,7 +21,6 @@ public class UseCaseQuery extends BaseQuery {
     public UseCaseResult findByIdUseCase(String id) {
         Query query = em.createNamedQuery("findByIdUseCase");
         query.setParameter(1, id);
-//        UseCaseResult result = (UseCaseResult) query.getSingleResult();
         List l = query.getResultList();
         System.out.println(l.size());
         for (Object obj : l) {
@@ -29,7 +28,6 @@ public class UseCaseQuery extends BaseQuery {
         }
 
         return null;
-
     }
 
 }

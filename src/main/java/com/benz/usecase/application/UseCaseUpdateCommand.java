@@ -12,11 +12,11 @@ public class UseCaseUpdateCommand {
     private String value;
     private String scenario;
     private String resultText;
-    private List<ResultFileUpdateCommand> resultFiles;
+    private List<FileCommand> resultFiles;
     private String dataSource;
     private String dataTypeDescription;
     private String analysisModelText;
-    private List<AnalysisModelFileUpdateCommand> analysisModelFiles;
+    private List<FileCommand> analysisModelFiles;
     private String contributionBU;
     private String stage;
     private String fromDate;
@@ -26,7 +26,7 @@ public class UseCaseUpdateCommand {
     public UseCaseUpdateCommand() {
     }
 
-    public UseCaseUpdateCommand(String id, String subject, String value, String scenario, String resultText, List<ResultFileUpdateCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<AnalysisModelFileUpdateCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
+    public UseCaseUpdateCommand(String id, String subject, String value, String scenario, String resultText, List<FileCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<FileCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
         this.id = id;
         this.subject = subject;
         this.value = value;
@@ -84,11 +84,11 @@ public class UseCaseUpdateCommand {
         this.resultText = resultText;
     }
 
-    public List<ResultFileUpdateCommand> getResultFiles() {
+    public List<FileCommand> getResultFiles() {
         return resultFiles;
     }
 
-    public void setResultFiles(List<ResultFileUpdateCommand> resultFiles) {
+    public void setResultFiles(List<FileCommand> resultFiles) {
         this.resultFiles = resultFiles;
     }
 
@@ -116,11 +116,11 @@ public class UseCaseUpdateCommand {
         this.analysisModelText = analysisModelText;
     }
 
-    public List<AnalysisModelFileUpdateCommand> getAnalysisModelFiles() {
+    public List<FileCommand> getAnalysisModelFiles() {
         return analysisModelFiles;
     }
 
-    public void setAnalysisModelFiles(List<AnalysisModelFileUpdateCommand> analysisModelFiles) {
+    public void setAnalysisModelFiles(List<FileCommand> analysisModelFiles) {
         this.analysisModelFiles = analysisModelFiles;
     }
 

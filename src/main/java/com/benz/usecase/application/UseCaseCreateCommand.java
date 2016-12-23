@@ -11,11 +11,11 @@ public class UseCaseCreateCommand {
     private String value;
     private String scenario;
     private String resultText;
-    private List<ResultFileCreateCommand> resultFiles;
+    private List<FileCommand> resultFiles;
     private String dataSource;
     private String dataTypeDescription;
     private String analysisModelText;
-    private List<AnalysisModelFileCreateCommand> analysisModelFiles;
+    private List<FileCommand> analysisModelFiles;
     private String contributionBU;
     private String stage;
     private String fromDate;
@@ -25,7 +25,7 @@ public class UseCaseCreateCommand {
     public UseCaseCreateCommand() {
     }
 
-    public UseCaseCreateCommand(String subject, String value, String scenario, String resultText, List<ResultFileCreateCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<AnalysisModelFileCreateCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
+    public UseCaseCreateCommand(String subject, String value, String scenario, String resultText, List<FileCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<FileCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
         this.subject = subject;
         this.value = value;
         this.scenario = scenario;
@@ -74,11 +74,11 @@ public class UseCaseCreateCommand {
         this.resultText = resultText;
     }
 
-    public List<ResultFileCreateCommand> getResultFiles() {
+    public List<FileCommand> getResultFiles() {
         return resultFiles;
     }
 
-    public void setResultFiles(List<ResultFileCreateCommand> resultFiles) {
+    public void setResultFiles(List<FileCommand> resultFiles) {
         this.resultFiles = resultFiles;
     }
 
@@ -106,11 +106,11 @@ public class UseCaseCreateCommand {
         this.analysisModelText = analysisModelText;
     }
 
-    public List<AnalysisModelFileCreateCommand> getAnalysisModelFiles() {
+    public List<FileCommand> getAnalysisModelFiles() {
         return analysisModelFiles;
     }
 
-    public void setAnalysisModelFiles(List<AnalysisModelFileCreateCommand> analysisModelFiles) {
+    public void setAnalysisModelFiles(List<FileCommand> analysisModelFiles) {
         this.analysisModelFiles = analysisModelFiles;
     }
 

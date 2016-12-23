@@ -9,6 +9,14 @@ public class UseCaseParameter extends QueryParameter {
     private String subject;
     private String value;
 
+    public UseCaseParameter() {
+    }
+
+    public UseCaseParameter(String subject, String value) {
+        this.subject = subject;
+        this.value = value;
+    }
+
     public String getSubject() {
         return subject;
     }
@@ -23,13 +31,5 @@ public class UseCaseParameter extends QueryParameter {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public UseCaseParameter(String subject, String value) {
-        this.subject = subject;
-        this.value = value;
-    }
-
-    public UseCaseParameter() {
     }
 }
