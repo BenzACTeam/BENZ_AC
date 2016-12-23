@@ -1,7 +1,5 @@
 package com.benz.usecase.application;
 
-import java.util.List;
-
 /**
  * Created by hongying.fu on 12/22/2016.
  */

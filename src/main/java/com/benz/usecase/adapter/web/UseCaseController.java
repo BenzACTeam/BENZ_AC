@@ -25,11 +25,10 @@ public class UseCaseController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void create(@RequestBody UseCaseCreateCommand aCommand) {
         useCaseApplicationService.createUseCase(aCommand);
-
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public void update(@PathVariable String id,@RequestBody UseCaseUpdateCommand aCommand) {
+    public void update(@PathVariable String id, @RequestBody UseCaseUpdateCommand aCommand) {
         aCommand.setId(id);
         useCaseApplicationService.updateUseCase(aCommand);
     }
@@ -39,15 +38,11 @@ public class UseCaseController {
         useCaseApplicationService.deleteUseCase(id);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public PagedList<UseCaseResult> findAll(UseCaseParameter parameter, Integer pageNo, Integer pageSize) throws IllegalAccessException {
-        if(pageNo == null){
-            pageNo = 1;
-        }
-        if(pageSize == null){
-            pageSize = 10;
-        }
-        return useCaseQuery.findAll(parameter,pageNo,pageSize);
+    @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
+    public PagedList<UseCaseResult> findAll(UseCaseParameter parameter, @PathVariable Integer pageNo) throws IllegalAccessException {
+        parameter.prepare(pageNo, null);
+
+        return useCaseQuery.findAll(parameter);
     }
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
@@ -60,11 +55,6 @@ public class UseCaseController {
         UseCaseResult result = useCaseQuery.findByIdUseCase(id);
         result.setId(null);
         return result;
-    }
-
-    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
-    public UseCase findOneById(@PathVariable String id) {
-        return useCaseApplicationService.findById(id);
     }
 
 }

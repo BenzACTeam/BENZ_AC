@@ -10,7 +10,7 @@ import java.io.InputStream;
  */
 @Service
 public class FileApplicationService {
-    public FileResult upload(InputStream inputStream, String newFileName)throws Exception{
+    public FileResult upload(InputStream inputStream, String newFileName) throws Exception {
         String filePath = new FTPUpload().upload(inputStream, newFileName);
         return new FileResult(filePath);
     }

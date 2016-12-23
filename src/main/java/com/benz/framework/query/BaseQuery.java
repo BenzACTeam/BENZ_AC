@@ -14,7 +14,8 @@ public class BaseQuery {
     @PersistenceContext
     protected EntityManager em;
 
-    protected <T> PagedList<T> getResult(QueryParameter parameter, Integer pageNo, Integer pageSize, String searchName, String countName, String resultMappingName)throws IllegalAccessException {
+    protected <T> PagedList<T> getResult(QueryParameter parameter, String searchName, String countName, String resultMappingName) throws IllegalAccessException {
+
         Query searchQuery = em.createNamedQuery(searchName);
         Query countQuery = em.createNamedQuery(countName);
         String searchSQL = searchQuery.unwrap(SQLQuery.class).getQueryString();
@@ -33,6 +34,8 @@ public class BaseQuery {
 
         Integer totalCount = (Integer) countQueryWithWhere.getSingleResult();
 
+        Integer pageNo = parameter.getPageNo();
+        Integer pageSize = parameter.getPageSize();
         PagedList<T> page = new PagedList<T>();
         page.setPageNo(pageNo);
         page.setPageSize(pageSize);

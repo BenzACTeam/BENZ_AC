@@ -14,8 +14,7 @@ public class ResultFileCreateCommand {
     private String fileName;
     private String url;
 
-    public String getUrl() {
-        return url;
+    public ResultFileCreateCommand() {
     }
 
     public ResultFileCreateCommand(String fileName, String url) {
@@ -23,11 +22,12 @@ public class ResultFileCreateCommand {
         this.url = url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public String getUrl() {
+        return url;
     }
 
-    public ResultFileCreateCommand() {
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public ResultFileCreateCommand(String fileName) {
@@ -48,6 +48,5 @@ public class ResultFileCreateCommand {
                 "fileName='" + fileName + '\'' +
                 '}';
     }
-
 
 }

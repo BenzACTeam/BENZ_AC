@@ -7,7 +7,37 @@ import java.lang.reflect.Field;
  * Created by hongying.fu on 12/21/2016.
  */
 public class QueryParameter {
-    public void setQueryParameter(Query countQueryWithWhere, Query searchQueryWithWhere) throws IllegalAccessException{
+    private Integer pageNo;
+    private Integer pageSize;
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public void prepare(Integer pageNo, Integer pageSize) {
+
+        if (pageNo == null) {
+            this.pageNo = 1;
+        }
+        if (pageSize == null) {
+            this.pageSize = 10;
+        }
+
+    }
+
+    public void setQueryParameter(Query countQueryWithWhere, Query searchQueryWithWhere) throws IllegalAccessException {
         Class parameterClass = getClass();
         Field[] fields = parameterClass.getDeclaredFields();
         for (int i = 0; i < fields.length; i++) {
