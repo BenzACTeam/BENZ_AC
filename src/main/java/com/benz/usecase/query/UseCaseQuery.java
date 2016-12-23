@@ -14,8 +14,8 @@ import java.util.List;
 public class UseCaseQuery extends BaseQuery {
 
     public PagedList<UseCaseResult> findAll(UseCaseParameter parameter) throws IllegalAccessException {
-        PagedList<UseCaseResult> page = getResult(parameter, "searchUseCase", "countUseCase", "useCaseMapping");
-        return page;
+        PagedList<UseCaseResult> result = getResult(parameter, "searchUseCase", "countUseCase", "useCaseMapping");
+        return result;
     }
 
     public UseCaseResult findByIdUseCase(String id) {
@@ -26,8 +26,6 @@ public class UseCaseQuery extends BaseQuery {
         for (Object obj : l) {
             System.out.println(obj.toString());
         }
-
         return null;
     }
-
 }

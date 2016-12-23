@@ -15,10 +15,9 @@ import java.util.List;
 public class AnalysisModel {
     private String text;
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="useCase")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "useCase")
     @JsonManagedReference
     private List<AnalysisModelFile> files;
-
 
     public AnalysisModel() {
     }

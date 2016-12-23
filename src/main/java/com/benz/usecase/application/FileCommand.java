@@ -42,11 +42,4 @@ public class FileCommand {
         this.fileName = fileName;
     }
 
-    @Override
-    public String toString() {
-        return "ResultFileCreateCommand{" +
-                "fileName='" + fileName + '\'' +
-                '}';
-    }
-
 }

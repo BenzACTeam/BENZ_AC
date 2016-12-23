@@ -38,7 +38,7 @@ public class UseCaseController {
     }
 
     @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
-    public PagedList<UseCaseResult> findAll(UseCaseParameter parameter, @PathVariable Integer pageNo) throws IllegalAccessException {
+    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNo, UseCaseParameter parameter) throws IllegalAccessException {
         parameter.prepare(pageNo, null);
 
         return useCaseQuery.findAll(parameter);
@@ -51,9 +51,7 @@ public class UseCaseController {
 
     @RequestMapping(value = "/clone/{id}", method = RequestMethod.GET)
     public UseCaseResult cloneOne(@PathVariable String id) {
-        UseCaseResult result = useCaseQuery.findByIdUseCase(id);
-        result.setId(null);
-        return result;
+        return findOne(id);
     }
 
 }

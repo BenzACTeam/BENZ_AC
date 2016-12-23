@@ -19,11 +19,11 @@ public class UseCaseApplicationService {
 
     public String createUseCase(UseCaseCreateCommand command) {
 
-        List<ResultFile> list = new ArrayList<>();
-        Result result = new Result(command.getResultText(),list);
+        List<ResultFile> resultFileList = new ArrayList<>();
+        Result result = new Result(command.getResultText(), resultFileList);
 
         List<AnalysisModelFile> analysisModelFileList = new ArrayList<>();
-        AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(),analysisModelFileList);
+        AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(), analysisModelFileList);
 
         UseCase useCase =
                 new UseCase(
@@ -41,22 +41,23 @@ public class UseCaseApplicationService {
                 );
 
         List<FileCommand> fileCommands = command.getResultFiles();
-        if(fileCommands != null && fileCommands.size() > 0){
-            for (FileCommand fileCommand : fileCommands){
+        if (fileCommands != null && fileCommands.size() > 0) {
+            for (FileCommand fileCommand : fileCommands) {
                 ResultFile resultFile = new ResultFile(fileCommand.getFileName(), fileCommand.getUrl());
                 useCase.addResultFile(resultFile);
             }
         }
 
         List<FileCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
-        if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
-            for(FileCommand analysisModelFileCommand : analysisModelFileCommands){
-                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
+        if (analysisModelFileCommands != null && analysisModelFileCommands.size() > 0) {
+            for (FileCommand analysisModelFileCommand : analysisModelFileCommands) {
+                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(), analysisModelFileCommand.getUrl());
                 useCase.addAnalysisModelFile(analysisModelFile);
             }
         }
 
         useCase.create();
+
         return useCase.getId();
     }
 
@@ -69,8 +70,8 @@ public class UseCaseApplicationService {
         result.setText(command.getResultText());
 
         List<FileCommand> resultFileCreateCommands = command.getResultFiles();
-        if(resultFileCreateCommands != null && resultFileCreateCommands.size() > 0){
-            for (FileCommand resultFileCreateCommand : resultFileCreateCommands){
+        if (resultFileCreateCommands != null && resultFileCreateCommands.size() > 0) {
+            for (FileCommand resultFileCreateCommand : resultFileCreateCommands) {
                 ResultFile resultFile = new ResultFile(resultFileCreateCommand.getFileName(), resultFileCreateCommand.getUrl());
                 useCase.addResultFile(resultFile);
             }
@@ -80,9 +81,9 @@ public class UseCaseApplicationService {
         analysisModel.setText(command.getAnalysisModelText());
 
         List<FileCommand> analysisModelFileCommands = command.getAnalysisModelFiles();
-        if(analysisModelFileCommands != null && analysisModelFileCommands.size()>0){
-            for(FileCommand analysisModelFileCommand : analysisModelFileCommands){
-                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(),analysisModelFileCommand.getUrl());
+        if (analysisModelFileCommands != null && analysisModelFileCommands.size() > 0) {
+            for (FileCommand analysisModelFileCommand : analysisModelFileCommands) {
+                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(), analysisModelFileCommand.getUrl());
                 useCase.addAnalysisModelFile(analysisModelFile);
             }
         }
@@ -106,16 +107,15 @@ public class UseCaseApplicationService {
         useCase.delete();
     }
 
-    private UseCase existing(String id) {
-        UseCase useCase = useCaseRepository.getOne(id);
-        AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
-        return useCase;
-    }
-
-
     public UseCase findById(String id) {
         UseCase useCase = useCaseRepository.getOne(id);
         System.out.println(useCase);
+        return useCase;
+    }
+
+    private UseCase existing(String id) {
+        UseCase useCase = useCaseRepository.getOne(id);
+        AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
         return useCase;
     }
 }
