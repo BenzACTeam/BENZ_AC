@@ -18,7 +18,7 @@ public class ResultFile {
     }
 
     public ResultFile(String fileName, String url) {
-//        this.id = DomainRegistry.resultRepository().nextIdentity();
+        this.id = DomainRegistry.resultRepository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
     }

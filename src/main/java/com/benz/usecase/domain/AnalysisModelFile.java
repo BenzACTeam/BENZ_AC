@@ -18,7 +18,7 @@ public class AnalysisModelFile {
     }
 
     public AnalysisModelFile(String fileName, String url) {
-//        this.id = DomainRegistry.analysisModelRespository().nextIdentity();
+        this.id = DomainRegistry.analysisModelRespository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
     }
