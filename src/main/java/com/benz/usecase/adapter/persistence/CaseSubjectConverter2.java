@@ -6,7 +6,7 @@ import javax.persistence.AttributeConverter;
 /**
  * Created by paulliu on 2016/12/13.
  */
-public class CaseSubjectConverter implements AttributeConverter<CaseSubject, String> {
+public class CaseSubjectConverter2 implements AttributeConverter<CaseSubject, String> {
     @Override
     public String convertToDatabaseColumn(CaseSubject caseSubject) {
         return caseSubject.getValue();

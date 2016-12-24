@@ -25,24 +25,6 @@ public class UseCaseResult {
     public UseCaseResult() {
     }
 
-    public UseCaseResult(String id, String subject, String value, String scenario, String resultText, String dataSource, String dataTypeDescription, String analysisModelText, String contributionBU, String stage, String fromDate, String toDate, String contact, List<FileResult> resultFiles, List<FileResult> analysisModelFiles) {
-        this.id = id;
-        this.subject = subject;
-        this.value = value;
-        this.scenario = scenario;
-        this.resultText = resultText;
-        this.dataSource = dataSource;
-        this.dataTypeDescription = dataTypeDescription;
-        this.analysisModelText = analysisModelText;
-        this.contributionBU = contributionBU;
-        this.stage = stage;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.contact = contact;
-        this.resultFiles = resultFiles;
-        this.analysisModelFiles = analysisModelFiles;
-    }
-
     public String getId() {
         return id;
     }

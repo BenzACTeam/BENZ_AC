@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
  * Created by hongying.fu on 12/21/2016.
  */
 @Component
-@ConfigurationProperties(prefix="ftp")
+@ConfigurationProperties(prefix = "ftp")
 public class FTPParameter {
     private String url;
     private int port;
     private String username;
     private String password;
     private String httpUrl;
-
 
     public String getUrl() {
         return url;

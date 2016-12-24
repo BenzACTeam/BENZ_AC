@@ -1,10 +1,5 @@
 package com.benz.usecase.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -12,8 +7,6 @@ import java.util.List;
  */
 public class Result {
     private String text;
-    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="useCase")
-    @JsonManagedReference
     private List<ResultFile> files;
 
     public Result() {
@@ -39,10 +32,4 @@ public class Result {
     public void setFiles(List<ResultFile> files) {
         this.files = files;
     }
-
-    public void deleteResultFile(String useCaseId) {
-
-        DomainRegistry.resultRepository().deleteByUseCaseId(useCaseId);
-    }
-
 }

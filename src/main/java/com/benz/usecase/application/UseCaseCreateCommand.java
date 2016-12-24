@@ -66,10 +66,6 @@ public class UseCaseCreateCommand {
         this.scenario = scenario;
     }
 
-    public String getResultText() {
-        return resultText;
-    }
-
     public void setResultText(String resultText) {
         this.resultText = resultText;
     }
@@ -96,6 +92,10 @@ public class UseCaseCreateCommand {
 
     public void setDataTypeDescription(String dataTypeDescription) {
         this.dataTypeDescription = dataTypeDescription;
+    }
+
+    public String getResultText() {
+        return resultText;
     }
 
     public String getAnalysisModelText() {

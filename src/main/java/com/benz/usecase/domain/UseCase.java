@@ -1,12 +1,8 @@
 package com.benz.usecase.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
  * Created by paulliu on 2016/12/12.
  */
-
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class UseCase {
     private String id;
     private CaseSubject subject;
@@ -161,47 +157,4 @@ public class UseCase {
         DomainRegistry.repository().delete(id);
     }
 
-    public void addResultFile(ResultFile resultFile){
-        this.result.getFiles().add(resultFile);
-        if(resultFile.getUseCase() != this){
-            resultFile.setUseCase(this);
-        }
-    }
-
-    public void addAnalysisModelFile(AnalysisModelFile analysisModelFile){
-        this.analysisModel.getFiles().add(analysisModelFile);
-        if(analysisModelFile.getUseCase() != this){
-            analysisModelFile.setUseCase(this);
-        }
-    }
-
-    public void deleteResult() {
-        if(this.result != null){
-            this.result.deleteResultFile(this.id);
-        }
-    }
-
-    public void deleteAnalysisModel() {
-        if(this.analysisModel != null){
-            this.analysisModel.deleteFiles(this.id);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "UseCase{" +
-                "id='" + id + '\'' +
-                ", subject=" + subject +
-                ", value='" + value + '\'' +
-                ", scenario='" + scenario + '\'' +
-                ", result=" + result +
-                ", dataSource='" + dataSource + '\'' +
-                ", dataTypeDescription='" + dataTypeDescription + '\'' +
-                ", analysisModel=" + analysisModel +
-                ", contributionBU='" + contributionBU + '\'' +
-                ", stage='" + stage + '\'' +
-                ", timeFrame=" + timeFrame +
-                ", contact='" + contact + '\'' +
-                '}';
-    }
 }

@@ -19,7 +19,7 @@ public class UseCaseQuery extends BaseQuery {
     }
 
     public UseCaseResult findByIdUseCase(String id) {
-        Query query = em.createNamedQuery("findByIdUseCase");
+        Query query = em.createNamedQuery("findById");
         query.setParameter(1, id);
         List l = query.getResultList();
         System.out.println(l.size());

@@ -1,0 +1,55 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.benz.usecase.query.UseCaseQuery2">
+
+    <resultMap id="useCaseResultMap" type="useCaseResult">
+        <id column="id" property="id"/>
+        <result column="subject" property="subject"/>
+        <result column="value" property="value"/>
+        <collection property="files" ofType="FileResult">
+            <result column="url" property="url"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAll" resultType="com.benz.usecase.query.UseCaseResult">
+        select
+            id,
+            subject,
+            value,
+            scenario,
+            result,
+            data_source,
+            data_type_description
+            analysis_model,
+            contributionbu,
+            stage,
+            afrom_value,
+            ato_value,
+            contact
+        from
+            use_case
+    </select>
+
+    <select id="findById" resultMap="useCaseResultMap">
+        select
+            uc.id,
+            subject,
+            value,
+            scenario,
+            result_text,
+            data_source,
+            data_type_description,
+            analysis_model_text,
+            contributionbu,
+            stage,
+            afrom_value,
+            ato_value,
+            contact,
+            rf.url as url
+        from
+            use_case uc left join result_file rf on uc.id = rf.use_case_id
+        where
+            uc.id = #{id}
+    </select>
+
+</mapper>

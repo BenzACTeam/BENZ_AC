@@ -1,12 +1,5 @@
 package com.benz.usecase.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -14,17 +7,14 @@ import java.util.List;
  */
 public class AnalysisModel {
     private String text;
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "useCase")
-    @JsonManagedReference
     private List<AnalysisModelFile> files;
 
     public AnalysisModel() {
     }
 
-    public AnalysisModel(String text, List<AnalysisModelFile> fileNames) {
+    public AnalysisModel(String text, List<AnalysisModelFile> files) {
         this.text = text;
-        this.files = fileNames;
+        this.files = files;
     }
 
     public String getText() {
@@ -41,9 +31,5 @@ public class AnalysisModel {
 
     public void setFiles(List<AnalysisModelFile> files) {
         this.files = files;
-    }
-
-    public void deleteFiles(String id) {
-        DomainRegistry.analysisModelRespository().deleteByUseCaseId(id);
     }
 }

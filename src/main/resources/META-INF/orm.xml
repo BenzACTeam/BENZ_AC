@@ -11,41 +11,57 @@
         </persistence-unit-defaults>
     </persistence-unit-metadata>
 
+    <!-- UseCase -->
     <entity class="com.benz.usecase.domain.UseCase">
         <attributes>
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
-            <embedded name="result"></embedded>
-            <embedded name="analysisModel"></embedded>
+            <embedded name="subject"></embedded>
+            <embedded name="result">
+                <one-to-many></one-to-many>
+            </embedded>
+            <embedded name="analysisModel">
+                <one-to-many></one-to-many>
+            </embedded>
         </attributes>
-        <convert converter="com.benz.usecase.adapter.persistence.CaseSubjectConverter" attribute-name="subject"/>
     </entity>
-
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
+
+    <embeddable class="com.benz.usecase.domain.CaseSubject">
+        <attributes>
+            <basic name="value">
+                <column name="subject"/>
+            </basic>
+        </attributes>
+    </embeddable>
 
     <embeddable class="com.benz.usecase.domain.Result">
         <attributes>
+            <one-to-many name="files" fetch="LAZY">
+                <join-column name="case_id"/>
+            </one-to-many>
             <basic name="text">
                 <column name="result_text"/>
             </basic>
         </attributes>
     </embeddable>
-    <entity class="com.benz.usecase.domain.ResultFile">
-        <attributes>
-            <id name="id"></id>
-            <!--<many-to-one name="result">
-                <join-column name="result_id" referenced-column-name="id"></join-column>
-                <cascade>CascadeType.ALL</cascade>
-            </many-to-one>-->
-        </attributes>
-    </entity>
+
     <embeddable class="com.benz.usecase.domain.AnalysisModel">
         <attributes>
+            <one-to-many name="files" fetch="LAZY">
+                <join-column name="case_id"/>
+            </one-to-many>
             <basic name="text">
-                <column name="analysis_model_text"/>
+                <column name="analysismodel_text"/>
             </basic>
         </attributes>
     </embeddable>
+
+    <entity class="com.benz.usecase.domain.ResultFile">
+        <attributes>
+            <id name="id"></id>
+        </attributes>
+    </entity>
 
     <entity class="com.benz.usecase.domain.AnalysisModelFile">
         <attributes>
@@ -53,84 +69,5 @@
         </attributes>
     </entity>
 
-    <named-native-query name="countUseCase">
-        <query><![CDATA[
-            select
-                count(*)
-            from
-                use_case
-        ]]></query>
-    </named-native-query>
-
-    <named-native-query name="searchUseCase" result-set-mapping="useCaseMapping">
-        <query><![CDATA[
-            select
-                id as id,
-                subject as subject,
-                value as value,
-                scenario as scenario,
-                result as result,
-                data_source as data_source,
-                data_type_description as data_type_description,
-                analysis_model as analysis_model,
-                contributionbu as contributionbu,
-                stage as stage,
-                afrom_value as afrom_value,
-                ato_value as ato_value,
-                contact as contact
-            from
-                use_case
-        ]]></query>
-    </named-native-query>
-
-    <named-native-query name="findByIdUseCase" result-set-mapping="useCaseMapping">
-        <query><![CDATA[
-            select
-                uc.id as id,
-                subject,
-                value,
-                scenario,
-                result_text,
-                data_source,
-                data_type_description,
-                analysis_model_text,
-                contributionbu,
-                stage,
-                afrom_value,
-                ato_value,
-                contact,
-                rf.url as url
-            from
-                use_case uc join result_file rf on uc.id = rf.use_case_id
-            where
-                uc.id = ?
-
-        ]]></query>
-    </named-native-query>
-
-    <sql-result-set-mapping name="useCaseMapping">
-
-        <!--<constructor-result target-class="com.benz.usecase.query.UseCaseResult">-->
-        <!--<column name="id"></column>-->
-        <!--<column name="subject"></column>-->
-        <!--<column name="value"></column>-->
-        <!--<column name="scenario"></column>-->
-        <!--<column name="result_text"></column>-->
-        <!--<column name="data_source"></column>-->
-        <!--<column name="data_type_description"></column>-->
-        <!--<column name="analysis_model_text"></column>-->
-        <!--<column name="contributionbu"></column>-->
-        <!--<column name="stage"></column>-->
-        <!--<column name="afrom_value" class="java.lang.String"></column>-->
-        <!--<column name="ato_value" class="java.lang.String"></column>-->
-        <!--<column name="contact"></column>-->
-        <!--<column name="url"></column>-->
-        <!--</constructor-result>-->
-        <entity-result entity-class="com.benz.usecase.query.UseCaseResult">
-            <field-result name="id" column="id"/>
-            <field-result name="subject" column="subject"/>
-            <field-result name="resultFiles" column="url"/>
-        </entity-result>
-    </sql-result-set-mapping>
 
 </entity-mappings>

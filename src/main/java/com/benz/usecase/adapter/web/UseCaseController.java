@@ -5,7 +5,7 @@ import com.benz.usecase.application.UseCaseApplicationService;
 import com.benz.usecase.application.UseCaseCreateCommand;
 import com.benz.usecase.application.UseCaseUpdateCommand;
 import com.benz.usecase.query.UseCaseParameter;
-import com.benz.usecase.query.UseCaseQuery;
+import com.benz.usecase.query.UseCaseQuery2;
 import com.benz.usecase.query.UseCaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class UseCaseController {
     @Autowired
     private UseCaseApplicationService useCaseApplicationService;
     @Autowired
-    private UseCaseQuery useCaseQuery;
+    private UseCaseQuery2 useCaseQuery;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void create(@RequestBody UseCaseCreateCommand aCommand) {
@@ -46,7 +46,7 @@ public class UseCaseController {
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public UseCaseResult findOne(@PathVariable String id) {
-        return useCaseQuery.findByIdUseCase(id);
+        return useCaseQuery.findById(id);
     }
 
     @RequestMapping(value = "/clone/{id}", method = RequestMethod.GET)

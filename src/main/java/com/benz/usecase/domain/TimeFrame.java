@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by paulliu on 2016/12/12.
  */
-@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+//@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class TimeFrame {
     private Date afromValue;
     private Date atoValue;
@@ -23,16 +23,16 @@ public class TimeFrame {
         this.atoValue = atoValue;
     }
 
-    public TimeFrame(String afromValue, String atoValue){
-        AssertionConcern.assertArgumentNotEmpty(afromValue,"fromValue cannot be empty");
-        AssertionConcern.assertArgumentNotEmpty(atoValue,"atoValue cannot be empty");
-        SimpleDateFormat format;
+    public TimeFrame(String afromValue, String atoValue) {
+        AssertionConcern.assertArgumentNotEmpty(afromValue, "Start date cannot be empty");
+        AssertionConcern.assertArgumentNotEmpty(atoValue, "End date cannot be empty");
         try {
-            format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             this.afromValue = format.parse(afromValue);
             this.atoValue = format.parse(atoValue);
-        }catch (Exception e){
-           e.printStackTrace();
+        } catch (Exception e) {
+            //TODO: should throw exception
+            e.printStackTrace();
         }
     }
 

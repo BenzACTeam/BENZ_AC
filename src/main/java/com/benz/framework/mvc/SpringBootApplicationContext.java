@@ -1,4 +1,4 @@
-package com.benz.framework.ioc;
+package com.benz.framework.mvc;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

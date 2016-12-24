@@ -10,9 +10,9 @@ import javax.transaction.Transactional;
 /**
  * Created by hongying.fu on 12/22/2016.
  */
-public interface AnalysisModelFileRespository extends BaseRepository<AnalysisModelFile,String> {
-    @Modifying
-    @Transactional
-    @Query( "delete from AnalysisModelFile amf where amf.useCase.id = :useCaseId")
-    void deleteByUseCaseId(@Param("useCaseId") String useCaseId);
-}
+//public interface AnalysisModelFileRespository extends BaseRepository<AnalysisModelFile,String> {
+////    @Modifying
+////    @Transactional
+////    @Query( "delete from AnalysisModelFile amf where amf.useCase.id = :useCaseId")
+//    void deleteByUseCaseId(@Param("useCaseId") String useCaseId);
+//}
