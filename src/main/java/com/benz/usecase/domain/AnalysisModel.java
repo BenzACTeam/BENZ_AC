@@ -41,9 +41,9 @@ public class AnalysisModel {
 
     private void clearFiles() {
         if (files != null && files.size() > 0) {
-//            for (AnalysisModelFile analysisModelFile : files) {
-//                analysisModelFile.delete();
-//            }
+            for (AnalysisModelFile analysisModelFile : files) {
+                analysisModelFile.delete();
+            }
             //TODO: orphanRemoval=true cannot work!!!
             files.clear();
         }
