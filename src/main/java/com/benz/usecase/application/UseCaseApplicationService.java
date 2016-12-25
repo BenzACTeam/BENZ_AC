@@ -48,9 +48,6 @@ public class UseCaseApplicationService {
 
     @Transactional
     public void updateUseCase(UseCaseUpdateCommand command) {
-//        ResultFile resultFile = DomainRegistry.resultFileRepository().findOne("0e00ff5c-7014-4561-ba31-365091c7caae");
-//        resultFile.delete();
-
         UseCase useCase = existing(command.getId());
 
         List<ResultFile> resultFileList = parseResultFiles(command.getResultFiles());
