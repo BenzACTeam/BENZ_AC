@@ -134,7 +134,16 @@ public class UseCase {
     }
 
     public void create() {
-        DomainRegistry.repository().save(this);
+//        DomainRegistry.repository().save(this);
+//        for (ResultFile file : this.result.getFiles()) {
+//            file.setCaseId(this.id);
+//        }
+//        for (AnalysisModelFile file : this.analysisModel.getFiles()) {
+//            file.setCaseId(this.id);
+//        }
+//        DomainRegistry.resultFileRepository().save(this.result.getFiles());
+//        DomainRegistry.analysisModelFileRespository().save(this.analysisModel.getFiles());
+        DomainRegistry.repository().saveAndFlush(this);
     }
 
     public void update(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, AnalysisModel analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {

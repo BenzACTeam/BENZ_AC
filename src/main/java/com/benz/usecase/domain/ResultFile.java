@@ -1,9 +1,5 @@
 package com.benz.usecase.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
-
 /**
  * Created by hongying.fu on 12/22/2016.
  */
@@ -18,7 +14,7 @@ public class ResultFile {
     }
 
     public ResultFile(String fileName, String url) {
-        this.id = DomainRegistry.resultRepository().nextIdentity();
+        this.id = DomainRegistry.resultFileRepository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
     }

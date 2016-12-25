@@ -1,11 +1,5 @@
 package com.benz.usecase.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 /**
  * Created by hongying.fu on 12/22/2016.
  */
@@ -18,7 +12,7 @@ public class AnalysisModelFile {
     }
 
     public AnalysisModelFile(String fileName, String url) {
-        this.id = DomainRegistry.analysisModelRespository().nextIdentity();
+        this.id = DomainRegistry.analysisModelFileRespository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
     }

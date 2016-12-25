@@ -38,7 +38,10 @@
     <embeddable class="com.benz.usecase.domain.Result">
         <attributes>
             <one-to-many name="files" fetch="LAZY">
-                <join-column name="case_id"/>
+                <join-column name="caseId"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
             </one-to-many>
             <basic name="text">
                 <column name="result_text"/>
@@ -49,7 +52,10 @@
     <embeddable class="com.benz.usecase.domain.AnalysisModel">
         <attributes>
             <one-to-many name="files" fetch="LAZY">
-                <join-column name="case_id"/>
+                <join-column name="caseId"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
             </one-to-many>
             <basic name="text">
                 <column name="analysismodel_text"/>
