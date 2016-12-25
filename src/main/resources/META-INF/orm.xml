@@ -35,7 +35,7 @@
     </embeddable>
     <embeddable class="com.benz.usecase.domain.Result">
         <attributes>
-            <one-to-many name="files" delete-orphan="true">
+            <one-to-many name="files">
                 <join-column name="case_id" nullable="false"/>
                 <cascade>
                     <cascade-all/>

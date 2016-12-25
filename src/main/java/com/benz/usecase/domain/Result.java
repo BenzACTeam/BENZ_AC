@@ -41,9 +41,9 @@ public class Result {
 
     private void clearFiles() {
         if (files != null && files.size() > 0) {
-//            for (ResultFile resultFile : files) {
-//                resultFile.delete();
-//            }
+            for (ResultFile resultFile : files) {
+                resultFile.delete();
+            }
             //TODO: orphanRemoval=true cannot work!!!
             files.clear();
         }
