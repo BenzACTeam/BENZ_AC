@@ -134,15 +134,12 @@ public class UseCase {
     }
 
     public void create() {
-        DomainRegistry.repository().save(this);
         for (ResultFile file : this.result.getFiles()) {
-            file.setCaseId(this.id);
+            file.setUseCase(this);
         }
         for (AnalysisModelFile file : this.analysisModel.getFiles()) {
-            file.setCaseId(this.id);
+            file.setUseCase(this);
         }
-//        DomainRegistry.resultFileRepository().save(this.result.getFiles());
-//        DomainRegistry.analysisModelFileRespository().save(this.analysisModel.getFiles());
         DomainRegistry.repository().save(this);
     }
 
@@ -163,7 +160,7 @@ public class UseCase {
     }
 
     public void delete() {
-        DomainRegistry.repository().delete(id);
+        DomainRegistry.repository().delete(this);
     }
 
 }

@@ -37,8 +37,7 @@
 
     <embeddable class="com.benz.usecase.domain.Result">
         <attributes>
-            <one-to-many name="files" fetch="LAZY">
-                <join-column name="caseId"/>
+            <one-to-many name="files" fetch="LAZY" mapped-by="useCase">
                 <cascade>
                     <cascade-all/>
                 </cascade>
@@ -51,8 +50,7 @@
 
     <embeddable class="com.benz.usecase.domain.AnalysisModel">
         <attributes>
-            <one-to-many name="files" fetch="LAZY">
-                <join-column name="caseId"/>
+            <one-to-many name="files" fetch="LAZY" mapped-by="useCase">
                 <cascade>
                     <cascade-all/>
                 </cascade>
@@ -66,12 +64,18 @@
     <entity class="com.benz.usecase.domain.ResultFile">
         <attributes>
             <id name="id"></id>
+            <many-to-one name="useCase" fetch="LAZY">
+                <join-column name="case_id"/>
+            </many-to-one>
         </attributes>
     </entity>
 
     <entity class="com.benz.usecase.domain.AnalysisModelFile">
         <attributes>
             <id name="id"></id>
+            <many-to-one name="useCase" fetch="LAZY">
+                <join-column name="case_id"/>
+            </many-to-one>
         </attributes>
     </entity>
 

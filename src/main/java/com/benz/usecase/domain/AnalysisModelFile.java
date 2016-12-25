@@ -1,5 +1,7 @@
 package com.benz.usecase.domain;
 
+import javax.persistence.ManyToOne;
+
 /**
  * Created by hongying.fu on 12/22/2016.
  */
@@ -7,7 +9,7 @@ public class AnalysisModelFile {
     private String id;
     private String fileName;
     private String url;
-    private String caseId;
+    private UseCase useCase;
 
     public AnalysisModelFile() {
     }
@@ -42,11 +44,11 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
-    public String getCaseId() {
-        return caseId;
+    public UseCase getUseCase() {
+        return useCase;
     }
 
-    public void setCaseId(String caseId) {
-        this.caseId = caseId;
+    public void setUseCase(UseCase useCase) {
+        this.useCase = useCase;
     }
 }
