@@ -5,6 +5,7 @@ import com.benz.usecase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,11 @@ public class UseCaseApplicationService {
         return useCase.getId();
     }
 
+    @Transactional
     public void updateUseCase(UseCaseUpdateCommand command) {
+//        ResultFile resultFile = DomainRegistry.resultFileRepository().findOne("0e00ff5c-7014-4561-ba31-365091c7caae");
+//        resultFile.delete();
+
         UseCase useCase = existing(command.getId());
 
         List<ResultFile> resultFileList = parseResultFiles(command.getResultFiles());
