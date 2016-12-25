@@ -74,7 +74,7 @@ public class UseCaseApplicationService {
     }
 
     private UseCase existing(String id) {
-        UseCase useCase = useCaseRepository.getOne(id);
+        UseCase useCase = useCaseRepository.findOne(id);
         AssertionConcern.assertArgumentNotNull(useCase, "use case does not exist");
         return useCase;
     }

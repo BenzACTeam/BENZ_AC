@@ -43,4 +43,7 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
+    public void delete() {
+        DomainRegistry.analysisModelFileRespository().delete(this);
+    }
 }

@@ -32,4 +32,20 @@ public class Result {
     public void setFiles(List<ResultFile> files) {
         this.files = files;
     }
+
+    public void reset(Result result) {
+        clearFiles();
+        setText(result.getText());
+        setFiles(result.getFiles());
+    }
+
+    private void clearFiles() {
+        if (files != null && files.size() > 0) {
+//            for (ResultFile resultFile : files) {
+//                resultFile.delete();
+//            }
+            //TODO: orphanRemoval=true cannot work!!!
+            files.clear();
+        }
+    }
 }

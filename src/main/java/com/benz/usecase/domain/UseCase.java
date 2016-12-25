@@ -141,14 +141,15 @@ public class UseCase {
         setSubject(subject);
         setValue(value);
         setScenario(scenario);
-        setResult(result);
         setDataSource(dataSource);
         setDataTypeDescription(dataTypeDescription);
-        setAnalysisModel(analysisModel);
         setContributionBU(contributionBU);
         setStage(stage);
         setTimeFrame(timeFrame);
         setContact(contact);
+
+        this.result.reset(result);
+        this.analysisModel.reset(analysisModel);
 
         DomainRegistry.repository().save(this);
     }

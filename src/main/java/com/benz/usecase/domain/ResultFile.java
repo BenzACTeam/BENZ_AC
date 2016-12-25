@@ -43,4 +43,7 @@ public class ResultFile {
         this.url = url;
     }
 
+    public void delete() {
+        DomainRegistry.resultFileRepository().delete(this);
+    }
 }

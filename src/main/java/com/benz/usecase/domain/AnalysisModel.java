@@ -32,4 +32,20 @@ public class AnalysisModel {
     public void setFiles(List<AnalysisModelFile> files) {
         this.files = files;
     }
+
+    public void reset(AnalysisModel analysisModel) {
+        clearFiles();
+        setText(analysisModel.getText());
+        setFiles(analysisModel.getFiles());
+    }
+
+    private void clearFiles() {
+        if (files != null && files.size() > 0) {
+//            for (AnalysisModelFile analysisModelFile : files) {
+//                analysisModelFile.delete();
+//            }
+            //TODO: orphanRemoval=true cannot work!!!
+            files.clear();
+        }
+    }
 }
