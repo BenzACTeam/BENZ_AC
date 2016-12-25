@@ -44,6 +44,6 @@ public class ResultFile {
     }
 
     public void delete() {
-        DomainRegistry.resultFileRepository().delete(this.getId());
+        DomainRegistry.resultFileRepository().delete(this);
     }
 }
