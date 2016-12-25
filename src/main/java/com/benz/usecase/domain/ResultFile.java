@@ -9,7 +9,6 @@ public class ResultFile {
     private String id;
     private String fileName;
     private String url;
-    private UseCase useCase;
 
     public ResultFile() {
     }
@@ -44,11 +43,4 @@ public class ResultFile {
         this.url = url;
     }
 
-    public UseCase getUseCase() {
-        return useCase;
-    }
-
-    public void setUseCase(UseCase useCase) {
-        this.useCase = useCase;
-    }
 }

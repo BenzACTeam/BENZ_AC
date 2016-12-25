@@ -134,12 +134,6 @@ public class UseCase {
     }
 
     public void create() {
-        for (ResultFile file : this.result.getFiles()) {
-            file.setUseCase(this);
-        }
-        for (AnalysisModelFile file : this.analysisModel.getFiles()) {
-            file.setUseCase(this);
-        }
         DomainRegistry.repository().save(this);
     }
 

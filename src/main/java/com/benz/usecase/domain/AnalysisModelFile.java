@@ -9,7 +9,6 @@ public class AnalysisModelFile {
     private String id;
     private String fileName;
     private String url;
-    private UseCase useCase;
 
     public AnalysisModelFile() {
     }
@@ -44,11 +43,4 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
-    public UseCase getUseCase() {
-        return useCase;
-    }
-
-    public void setUseCase(UseCase useCase) {
-        this.useCase = useCase;
-    }
 }

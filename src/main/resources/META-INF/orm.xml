@@ -26,7 +26,6 @@
         </attributes>
     </entity>
     <embeddable class="com.benz.usecase.domain.TimeFrame"></embeddable>
-
     <embeddable class="com.benz.usecase.domain.CaseSubject">
         <attributes>
             <basic name="value">
@@ -34,10 +33,10 @@
             </basic>
         </attributes>
     </embeddable>
-
     <embeddable class="com.benz.usecase.domain.Result">
         <attributes>
-            <one-to-many name="files" fetch="LAZY" mapped-by="useCase">
+            <one-to-many name="files">
+                <join-column name="case_id" nullable="false"/>
                 <cascade>
                     <cascade-all/>
                 </cascade>
@@ -47,10 +46,10 @@
             </basic>
         </attributes>
     </embeddable>
-
     <embeddable class="com.benz.usecase.domain.AnalysisModel">
         <attributes>
-            <one-to-many name="files" fetch="LAZY" mapped-by="useCase">
+            <one-to-many name="files">
+                <join-column name="case_id" nullable="false"/>
                 <cascade>
                     <cascade-all/>
                 </cascade>
@@ -60,24 +59,15 @@
             </basic>
         </attributes>
     </embeddable>
-
     <entity class="com.benz.usecase.domain.ResultFile">
         <attributes>
             <id name="id"></id>
-            <many-to-one name="useCase" fetch="LAZY">
-                <join-column name="case_id"/>
-            </many-to-one>
         </attributes>
     </entity>
-
     <entity class="com.benz.usecase.domain.AnalysisModelFile">
         <attributes>
             <id name="id"></id>
-            <many-to-one name="useCase" fetch="LAZY">
-                <join-column name="case_id"/>
-            </many-to-one>
         </attributes>
     </entity>
-
 
 </entity-mappings>
