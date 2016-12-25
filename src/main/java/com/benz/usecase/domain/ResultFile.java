@@ -9,6 +9,7 @@ public class ResultFile {
     private String id;
     private String fileName;
     private String url;
+    private String caseId;
 
     public ResultFile() {
     }
@@ -43,4 +44,11 @@ public class ResultFile {
         this.url = url;
     }
 
+    public String getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(String caseId) {
+        this.caseId = caseId;
+    }
 }

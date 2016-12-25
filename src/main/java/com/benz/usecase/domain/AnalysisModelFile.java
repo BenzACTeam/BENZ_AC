@@ -7,6 +7,7 @@ public class AnalysisModelFile {
     private String id;
     private String fileName;
     private String url;
+    private String caseId;
 
     public AnalysisModelFile() {
     }
@@ -41,4 +42,11 @@ public class AnalysisModelFile {
         this.url = url;
     }
 
+    public String getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(String caseId) {
+        this.caseId = caseId;
+    }
 }
