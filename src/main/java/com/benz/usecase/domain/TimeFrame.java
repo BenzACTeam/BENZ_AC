@@ -10,7 +10,6 @@ import java.util.Date;
 /**
  * Created by paulliu on 2016/12/12.
  */
-//@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class TimeFrame {
     private Date afromValue;
     private Date atoValue;
