@@ -33,7 +33,7 @@ public class exampleTest {
 //        userRepository.save(new User("Test5", 50));
 //
 //        // 测试findAll, 查询所有记录
-//        Assert.assertEquals(5, userRepository.findAll().size());
+//        Assert.assertEquals(5, userRepository.search().size());
 //
 //        // 测试findByName, 查询姓名为Test2的User.Age=20
 //        Assert.assertEquals(20, userRepository.findByName("Test2").getAge().longValue());
@@ -48,7 +48,7 @@ public class exampleTest {
 //        userRepository.delete(userRepository.findByName("Test5"));
 //
 //        // 测试findAll, 删除后为4条记录
-//        Assert.assertEquals(4, userRepository.findAll().size());
+//        Assert.assertEquals(4, userRepository.search().size());
 
     }
 

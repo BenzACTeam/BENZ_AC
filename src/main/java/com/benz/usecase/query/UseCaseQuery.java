@@ -1,6 +1,7 @@
 package com.benz.usecase.query;
 
 import com.benz.framework.query.BaseQuery;
+import com.benz.framework.query.PageParameter;
 import com.benz.framework.query.PagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,11 @@ public class UseCaseQuery extends BaseQuery {
 
     public PagedList<UseCaseResult> findAll(final UseCaseParameter parameter, Integer pageNum) {
 
-        PagedList<UseCaseResult> useCaseResultPagedList = paging(parameter, pageNum, new Callable<List<UseCaseResult>>() {
+        PagedList<UseCaseResult> useCaseResultPagedList = paging(parameter, new Callable<List<UseCaseResult>>() {
             public List<UseCaseResult> call() {
                 return useCaseMapper.findAll(parameter);
             }
-        });
+        }, new PageParameter(pageNum));
 
         return useCaseResultPagedList;
     }

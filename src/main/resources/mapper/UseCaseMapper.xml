@@ -15,7 +15,7 @@
         <result column="subject" property="subject"/>
         <result column="afrom_value" property="fromDate"/>
         <result column="ato_value" property="toDate"/>
-        <result column="value" property="value"/>
+        <result column="pageSize" property="pageSize"/>
         <collection property="resultFiles" ofType="com.benz.usecase.query.FileResult">
             <result column="rurl" property="url"/>
             <result column="rfileName" property="fileName"/>
@@ -26,7 +26,7 @@
         </collection>
     </resultMap>
 
-    <select id="findAll" parameterType="com.benz.usecase.query.UseCaseParameter" resultMap="useCaseResultMap">
+    <select id="findAll" resultMap="useCaseResultMap">
         select
         id,
         subject,
@@ -45,7 +45,7 @@
         use_case
         WHERE 1 = 1
         <if test="subject != null">
-            AND subject like #{subject}
+            AND subject like CONCAT('%',#{subject},'%')
         </if>
     </select>
 

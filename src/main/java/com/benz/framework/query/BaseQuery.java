@@ -12,9 +12,9 @@ import java.util.concurrent.Callable;
  */
 public class BaseQuery {
 
-    protected <T> PagedList<T> paging(QueryParameter parameter, Integer pageNum, Callable<List<T>> func) {
+    protected <T> PagedList<T> paging(QueryParameter parameter, Callable<List<T>> func, PageParameter pageParameter) {
 
-        PageHelper.startPage(pageNum, 2);
+        PageHelper.startPage(pageParameter.getPageNum(), pageParameter.getPageSize());
 
         List<T> useCaseResultList = null;
         try {

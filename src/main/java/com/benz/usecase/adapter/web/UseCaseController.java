@@ -51,7 +51,7 @@ public class UseCaseController {
     }
 
     @RequestMapping(value = "/list/{pageNum}", method = RequestMethod.POST)
-    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNum, @RequestBody(required = false) UseCaseParameter parameter) {
+    public PagedList<UseCaseResult> search(@PathVariable Integer pageNum, @RequestBody(required = false) UseCaseParameter parameter) {
         return useCaseQuery.findAll(parameter, pageNum);
     }
 
