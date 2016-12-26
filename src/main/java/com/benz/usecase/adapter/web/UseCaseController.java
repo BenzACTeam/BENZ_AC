@@ -50,8 +50,8 @@ public class UseCaseController {
         return findOne(id);
     }
 
-    @RequestMapping(value = "/list/{pageNum}", method = RequestMethod.GET)
-    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNum, UseCaseParameter parameter) {
+    @RequestMapping(value = "/list/{pageNum}", method = RequestMethod.POST)
+    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNum, @RequestBody(required = false) UseCaseParameter parameter) {
         return useCaseQuery.findAll(parameter, pageNum);
     }
 

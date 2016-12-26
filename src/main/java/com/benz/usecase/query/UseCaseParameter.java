@@ -7,14 +7,8 @@ import com.benz.framework.query.QueryParameter;
  */
 public class UseCaseParameter extends QueryParameter {
     private String subject;
-    private String value;
 
     public UseCaseParameter() {
-    }
-
-    public UseCaseParameter(String subject, String value) {
-        this.subject = subject;
-        this.value = value;
     }
 
     public String getSubject() {
@@ -25,11 +19,4 @@ public class UseCaseParameter extends QueryParameter {
         this.subject = subject;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }

@@ -26,23 +26,27 @@
         </collection>
     </resultMap>
 
-    <select id="findAll" resultMap="useCaseResultMap">
+    <select id="findAll" parameterType="com.benz.usecase.query.UseCaseParameter" resultMap="useCaseResultMap">
         select
-            id,
-            subject,
-            value,
-            scenario,
-            result_text,
-            data_source,
-            data_type_description,
-            analysismodel_text,
-            contributionbu,
-            stage,
-            afrom_value,
-            ato_value,
-            contact
+        id,
+        subject,
+        value,
+        scenario,
+        result_text,
+        data_source,
+        data_type_description,
+        analysismodel_text,
+        contributionbu,
+        stage,
+        afrom_value,
+        ato_value,
+        contact
         from
-            use_case
+        use_case
+        WHERE 1 = 1
+        <if test="subject != null">
+            AND subject like #{subject}
+        </if>
     </select>
 
     <select id="findById" resultMap="useCaseResultMap">
