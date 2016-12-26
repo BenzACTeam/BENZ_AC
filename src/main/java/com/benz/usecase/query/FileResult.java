@@ -7,6 +7,9 @@ public class FileResult {
     private String fileName;
     private String url;
 
+    public FileResult() {
+    }
+
     public FileResult(String fileName, String url) {
         this.fileName = fileName;
         this.url = url;

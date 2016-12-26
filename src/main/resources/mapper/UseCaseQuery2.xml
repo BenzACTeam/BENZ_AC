@@ -2,11 +2,11 @@
 
 <mapper namespace="com.benz.usecase.query.UseCaseQuery2">
 
-    <resultMap id="useCaseResultMap" type="useCaseResult">
+    <resultMap id="useCaseResultMap" type="com.benz.usecase.query.UseCaseResult">
         <id column="id" property="id"/>
         <result column="subject" property="subject"/>
         <result column="value" property="value"/>
-        <collection property="files" ofType="FileResult">
+        <collection property="resultFiles" ofType="com.benz.usecase.query.FileResult">
             <result column="url" property="url"/>
         </collection>
     </resultMap>
@@ -39,7 +39,7 @@
             result_text,
             data_source,
             data_type_description,
-            analysis_model_text,
+            analysismodel_text,
             contributionbu,
             stage,
             afrom_value,
@@ -47,7 +47,7 @@
             contact,
             rf.url as url
         from
-            use_case uc left join result_file rf on uc.id = rf.use_case_id
+            use_case uc left join result_file rf on uc.id = rf.case_id
         where
             uc.id = #{id}
     </select>
