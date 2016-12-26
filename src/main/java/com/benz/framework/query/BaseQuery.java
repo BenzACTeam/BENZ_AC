@@ -1,52 +1,44 @@
 package com.benz.framework.query;
 
-import org.hibernate.SQLQuery;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by hongying.fu on 12/21/2016.
  */
 public class BaseQuery {
-    @PersistenceContext
-    protected EntityManager em;
 
-    protected <T> PagedList<T> getResult(QueryParameter parameter, String searchName, String countName, String resultMappingName) throws IllegalAccessException {
+    protected <T> PagedList<T> paging(QueryParameter parameter, Integer pageNum, Callable<List<T>> func) {
 
-        Query searchQuery = em.createNamedQuery(searchName);
-        Query countQuery = em.createNamedQuery(countName);
-        String searchSQL = searchQuery.unwrap(SQLQuery.class).getQueryString();
-        String countSQL = countQuery.unwrap(SQLQuery.class).getQueryString();
+        PageHelper.startPage(pageNum, 2);
 
-        String sqlWhere = parameter.generateSQLWhere();
-        if (!"".equals(sqlWhere)) {
-            searchSQL += " where " + sqlWhere;
-            countSQL += " where " + sqlWhere;
+        List<T> useCaseResultList = null;
+        try {
+            useCaseResultList = func.call();
+        } catch (Exception e) {
+            //TODO: exception handling
+            e.printStackTrace();
         }
 
-        Query countQueryWithWhere = em.createNativeQuery(countSQL);
-        Query searchQueryWithWhere = em.createNativeQuery(searchSQL, resultMappingName);
+        PageInfo<T> pageInfo = ((Page<T>) useCaseResultList).toPageInfo();
 
-        parameter.setQueryParameter(countQueryWithWhere, searchQueryWithWhere);
+        PagedList<T> pagedList = new PagedList<>(
+                useCaseResultList,
+                pageInfo.getPageNum(),
+                pageInfo.getPageSize(),
+                pageInfo.getSize(),
+                pageInfo.getTotal(),
+                pageInfo.getPages(),
+                pageInfo.isIsFirstPage(),
+                pageInfo.isIsLastPage(),
+                pageInfo.isHasPreviousPage(),
+                pageInfo.isHasNextPage());
 
-        Integer totalCount = (Integer) countQueryWithWhere.getSingleResult();
-
-        Integer pageNo = parameter.getPageNo();
-        Integer pageSize = parameter.getPageSize();
-        PagedList<T> page = new PagedList<T>();
-        page.setPageNo(pageNo);
-        page.setPageSize(pageSize);
-        page.setTotalCount(totalCount);
-
-        searchQueryWithWhere.setFirstResult((pageNo - 1) * pageSize);
-        searchQueryWithWhere.setMaxResults(pageNo * pageSize);
-        List<T> resultList = searchQueryWithWhere.getResultList();
-        page.setList(resultList);
-
-        return page;
+        return pagedList;
     }
 
 }

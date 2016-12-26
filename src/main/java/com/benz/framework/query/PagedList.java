@@ -4,91 +4,107 @@ import java.util.List;
 
 public class PagedList<T> {
 
-	//每页记录数(已知)
-	private int pageSize = 10;
-	
-	//当前条件下总记录数(已知)
-	private int totalCount = 0;
+    private int pageNum;
+    private int pageSize;
+    private int size;
+    private long total;
+    private int pages;
+    private List<T> list;
+    private boolean isFirstPage;
+    private boolean isLastPage;
+    private boolean hasPreviousPage;
+    private boolean hasNextPage;
 
-	//当前页码(已知)
-	private int pageNo = 1;
+    public PagedList(List<T> list, int pageNum, int pageSize, int size, long total, int pages, boolean isFirstPage, boolean isLastPage, boolean hasPreviousPage, boolean hasNextPage) {
+        this.pageNum = pageNum;
+        this.pageSize = pageSize;
+        this.size = size;
+        this.total = total;
+        this.pages = pages;
+        this.list = list;
+        this.isFirstPage = isFirstPage;
+        this.isLastPage = isLastPage;
+        this.hasPreviousPage = hasPreviousPage;
+        this.hasNextPage = hasNextPage;
+    }
 
-	//总页数(未知)
-	private int totalPage = 1;
+    public int getPageNum() {
+        return pageNum;
+    }
 
-	//开始行号(未知)
-	private int startNum = 0;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 
-	//结束行号(未知)
-	private int endNum = 0;
+    public int getPageSize() {
+        return pageSize;
+    }
 
-	//结果集
-	private List<T> list;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	
-	public int getPageSize() {
-		return pageSize;
-	}
+    public int getSize() {
+        return size;
+    }
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public void setSize(int size) {
+        this.size = size;
+    }
 
-	public int getTotalCount() {
-		return totalCount;
-	}
+    public long getTotal() {
+        return total;
+    }
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
+    public void setTotal(long total) {
+        this.total = total;
+    }
 
-	public int getPageNo() {
-		return pageNo;
-	}
+    public int getPages() {
+        return pages;
+    }
 
-	public void setPageNo(int pageNo) {
-		this.pageNo = pageNo;
-	}
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
 
-	public int getTotalPage() {
-		this.totalPage = totalCount/pageSize;
-		if(totalCount == 0 || totalCount%pageSize != 0){
-			totalPage++;
-		}
-		return totalPage;
-	}
+    public List<T> getList() {
+        return list;
+    }
 
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
+    public void setList(List<T> list) {
+        this.list = list;
+    }
 
-	public int getStartNum() {
-		this.startNum = (pageNo-1)*pageSize + 1;
-		return startNum;
-	}
+    public boolean isFirstPage() {
+        return isFirstPage;
+    }
 
-	public void setStartNum(int num) {
-		this.startNum = num;
-	}
+    public void setFirstPage(boolean firstPage) {
+        isFirstPage = firstPage;
+    }
 
-	public int getEndNum() {
-		this.endNum = pageNo*pageSize;
-		return endNum;
-	}
+    public boolean isLastPage() {
+        return isLastPage;
+    }
 
-	public void setEndNum(int num) {
-		this.endNum = num;
-	}
+    public void setLastPage(boolean lastPage) {
+        isLastPage = lastPage;
+    }
 
-	public List<T> getList() {
-		return list;
-	}
+    public boolean isHasPreviousPage() {
+        return hasPreviousPage;
+    }
 
-	public void setList(List<T> list) {
-		this.list = list;
-	}
+    public void setHasPreviousPage(boolean hasPreviousPage) {
+        this.hasPreviousPage = hasPreviousPage;
+    }
 
-	public Boolean hasNext(Boolean bool){
-		return  bool;
-	}
+    public boolean isHasNextPage() {
+        return hasNextPage;
+    }
+
+    public void setHasNextPage(boolean hasNextPage) {
+        this.hasNextPage = hasNextPage;
+    }
 }
