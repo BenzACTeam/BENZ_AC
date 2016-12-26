@@ -7,7 +7,12 @@
         <result column="subject" property="subject"/>
         <result column="value" property="value"/>
         <collection property="resultFiles" ofType="com.benz.usecase.query.FileResult">
-            <result column="url" property="url"/>
+            <result column="rurl" property="url"/>
+            <result column="rfileName" property="fileName"/>
+        </collection>
+        <collection property="analysisModelFiles" ofType="com.benz.usecase.query.FileResult">
+            <result column="aurl" property="url"/>
+            <result column="afileName" property="fileName"/>
         </collection>
     </resultMap>
 
@@ -45,9 +50,14 @@
             afrom_value,
             ato_value,
             contact,
-            rf.url as url
+            rf.url as rurl,
+            rf.file_name as rfileName,
+            af.url as aurl,
+            af.file_name as afileName
         from
-            use_case uc left join result_file rf on uc.id = rf.case_id
+            use_case uc
+            left join result_file rf on uc.id = rf.case_id
+            left join analysis_model_file af on uc.id=af.case_id
         where
             uc.id = #{id}
     </select>
