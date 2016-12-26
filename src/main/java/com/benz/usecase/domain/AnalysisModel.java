@@ -44,7 +44,7 @@ public class AnalysisModel {
             for (AnalysisModelFile analysisModelFile : files) {
                 analysisModelFile.delete();
             }
-            //TODO: orphanRemoval=true cannot work!!!
+            //TODO: orphanRemoval=true cannot work for unidirectional!!!
             files.clear();
         }
     }

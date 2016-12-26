@@ -44,7 +44,7 @@ public class Result {
             for (ResultFile resultFile : files) {
                 resultFile.delete();
             }
-            //TODO: orphanRemoval=true cannot work!!!
+            //TODO: orphanRemoval=true cannot work for unidirectional!!!
             files.clear();
         }
     }
