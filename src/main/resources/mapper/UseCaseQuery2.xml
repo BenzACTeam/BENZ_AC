@@ -4,7 +4,17 @@
 
     <resultMap id="useCaseResultMap" type="com.benz.usecase.query.UseCaseResult">
         <id column="id" property="id"/>
+        <result column="analysismodel_text" property="analysisModelText"/>
+        <result column="contact" property="contact"/>
+        <result column="contributionbu" property="contributionBU"/>
+        <result column="data_source" property="dataSource"/>
+        <result column="data_type_description" property="dataTypeDescription"/>
+        <result column="result_text" property="resultText"/>
+        <result column="scenario" property="scenario"/>
+        <result column="stage" property="stage"/>
         <result column="subject" property="subject"/>
+        <result column="afrom_value" property="fromDate"/>
+        <result column="ato_value" property="toDate"/>
         <result column="value" property="value"/>
         <collection property="resultFiles" ofType="com.benz.usecase.query.FileResult">
             <result column="rurl" property="url"/>
@@ -16,16 +26,16 @@
         </collection>
     </resultMap>
 
-    <select id="findAll" resultType="com.benz.usecase.query.UseCaseResult">
+    <select id="findAll" resultMap="useCaseResultMap">
         select
             id,
             subject,
             value,
             scenario,
-            result,
+            result_text,
             data_source,
-            data_type_description
-            analysis_model,
+            data_type_description,
+            analysismodel_text,
             contributionbu,
             stage,
             afrom_value,

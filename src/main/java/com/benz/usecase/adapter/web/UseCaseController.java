@@ -10,6 +10,8 @@ import com.benz.usecase.query.UseCaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
@@ -37,13 +39,6 @@ public class UseCaseController {
         useCaseApplicationService.deleteUseCase(id);
     }
 
-    @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
-    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNo, UseCaseParameter parameter) throws IllegalAccessException {
-        parameter.prepare(pageNo, null);
-
-        return useCaseQuery.findAll(parameter);
-    }
-
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public UseCaseResult findOne(@PathVariable String id) {
         return useCaseQuery.findById(id);
@@ -52,6 +47,15 @@ public class UseCaseController {
     @RequestMapping(value = "/clone/{id}", method = RequestMethod.GET)
     public UseCaseResult cloneOne(@PathVariable String id) {
         return findOne(id);
+    }
+
+    @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
+    public PagedList<UseCaseResult> findAll(@PathVariable Integer pageNo, UseCaseParameter parameter) {
+        parameter.prepare(pageNo, null);
+
+        List<UseCaseResult> useCaseResultList = useCaseQuery.findAll(parameter);
+
+        return null;
     }
 
 }
