@@ -5,5 +5,5 @@ import com.benz.framework.jpa.BaseRepository;
 /**
  * Created by paulliu on 2016/12/25.
  */
-public interface AnalysisModelFileRespository extends BaseRepository<AnalysisModelFile, String> {
+public interface AnalysisModelFileRespository extends BaseRepository<AnalysisMethodResultFile, String> {
 }

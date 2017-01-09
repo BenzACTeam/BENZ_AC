@@ -5,16 +5,16 @@ import javax.persistence.ManyToOne;
 /**
  * Created by hongying.fu on 12/22/2016.
  */
-public class AnalysisModelFile {
+public class ValidationMethodResultFile {
     private String id;
     private String fileName;
     private String url;
 
-    public AnalysisModelFile() {
+    public ValidationMethodResultFile() {
     }
 
-    public AnalysisModelFile(String fileName, String url) {
-        this.id = DomainRegistry.analysisModelFileRespository().nextIdentity();
+    public ValidationMethodResultFile(String fileName, String url) {
+        this.id = DomainRegistry.resultFileRepository().nextIdentity();
         this.fileName = fileName;
         this.url = url;
     }
@@ -44,6 +44,6 @@ public class AnalysisModelFile {
     }
 
     public void delete() {
-        DomainRegistry.analysisModelFileRespository().delete(this);
+        DomainRegistry.resultFileRepository().delete(this);
     }
 }

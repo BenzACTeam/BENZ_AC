@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * Created by hongying.fu on 12/22/2016.
  */
-public class AnalysisModel {
+public class AnalysisMethodResult {
     private String text;
-    private List<AnalysisModelFile> files;
+    private List<AnalysisMethodResultFile> files;
 
-    public AnalysisModel() {
+    public AnalysisMethodResult() {
     }
 
-    public AnalysisModel(String text, List<AnalysisModelFile> files) {
+    public AnalysisMethodResult(String text, List<AnalysisMethodResultFile> files) {
         this.text = text;
         this.files = files;
     }
@@ -25,24 +25,24 @@ public class AnalysisModel {
         this.text = text;
     }
 
-    public List<AnalysisModelFile> getFiles() {
+    public List<AnalysisMethodResultFile> getFiles() {
         return files;
     }
 
-    public void setFiles(List<AnalysisModelFile> files) {
+    public void setFiles(List<AnalysisMethodResultFile> files) {
         this.files = files;
     }
 
-    public void reset(AnalysisModel analysisModel) {
+    public void reset(AnalysisMethodResult analysisMethodResult) {
         clearFiles();
-        setText(analysisModel.getText());
-        setFiles(analysisModel.getFiles());
+        setText(analysisMethodResult.getText());
+        setFiles(analysisMethodResult.getFiles());
     }
 
     private void clearFiles() {
         if (files != null && files.size() > 0) {
-            for (AnalysisModelFile analysisModelFile : files) {
-                analysisModelFile.delete();
+            for (AnalysisMethodResultFile analysisMethodResultFile : files) {
+                analysisMethodResultFile.delete();
             }
             //TODO: orphanRemoval=true cannot work for unidirectional!!!
             files.clear();

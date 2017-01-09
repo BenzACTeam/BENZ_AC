@@ -11,12 +11,12 @@ public class UseCaseUpdateCommand {
     private String subject;
     private String value;
     private String scenario;
-    private String resultText;
-    private List<FileCommand> resultFiles;
+    private String validationMethodResultText;
+    private List<FileCommand> validationMethodResultFiles;
     private String dataSource;
     private String dataTypeDescription;
-    private String analysisModelText;
-    private List<FileCommand> analysisModelFiles;
+    private String analysisMethosResultText;
+    private List<FileCommand> analysisMethodResultFiles;
     private String contributionBU;
     private String stage;
     private String fromDate;
@@ -26,17 +26,17 @@ public class UseCaseUpdateCommand {
     public UseCaseUpdateCommand() {
     }
 
-    public UseCaseUpdateCommand(String id, String subject, String value, String scenario, String resultText, List<FileCommand> resultFiles, String dataSource, String dataTypeDescription, String analysisModelText, List<FileCommand> analysisModelFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
+    public UseCaseUpdateCommand(String id, String subject, String value, String scenario, String validationMethodResultText, List<FileCommand> validationMethodResultFiles, String dataSource, String dataTypeDescription, String analysisMethosResultText, List<FileCommand> analysisMethodResultFiles, String contributionBU, String stage, String fromDate, String toDate, String contact) {
         this.id = id;
         this.subject = subject;
         this.value = value;
         this.scenario = scenario;
-        this.resultText = resultText;
-        this.resultFiles = resultFiles;
+        this.validationMethodResultText = validationMethodResultText;
+        this.validationMethodResultFiles = validationMethodResultFiles;
         this.dataSource = dataSource;
         this.dataTypeDescription = dataTypeDescription;
-        this.analysisModelText = analysisModelText;
-        this.analysisModelFiles = analysisModelFiles;
+        this.analysisMethosResultText = analysisMethosResultText;
+        this.analysisMethodResultFiles = analysisMethodResultFiles;
         this.contributionBU = contributionBU;
         this.stage = stage;
         this.fromDate = fromDate;
@@ -76,20 +76,20 @@ public class UseCaseUpdateCommand {
         this.scenario = scenario;
     }
 
-    public String getResultText() {
-        return resultText;
+    public String getValidationMethodResultText() {
+        return validationMethodResultText;
     }
 
-    public void setResultText(String resultText) {
-        this.resultText = resultText;
+    public void setValidationMethodResultText(String validationMethodResultText) {
+        this.validationMethodResultText = validationMethodResultText;
     }
 
-    public List<FileCommand> getResultFiles() {
-        return resultFiles;
+    public List<FileCommand> getValidationMethodResultFiles() {
+        return validationMethodResultFiles;
     }
 
-    public void setResultFiles(List<FileCommand> resultFiles) {
-        this.resultFiles = resultFiles;
+    public void setValidationMethodResultFiles(List<FileCommand> validationMethodResultFiles) {
+        this.validationMethodResultFiles = validationMethodResultFiles;
     }
 
     public String getDataSource() {
@@ -108,20 +108,20 @@ public class UseCaseUpdateCommand {
         this.dataTypeDescription = dataTypeDescription;
     }
 
-    public String getAnalysisModelText() {
-        return analysisModelText;
+    public String getAnalysisMethosResultText() {
+        return analysisMethosResultText;
     }
 
-    public void setAnalysisModelText(String analysisModelText) {
-        this.analysisModelText = analysisModelText;
+    public void setAnalysisMethosResultText(String analysisMethosResultText) {
+        this.analysisMethosResultText = analysisMethosResultText;
     }
 
-    public List<FileCommand> getAnalysisModelFiles() {
-        return analysisModelFiles;
+    public List<FileCommand> getAnalysisMethodResultFiles() {
+        return analysisMethodResultFiles;
     }
 
-    public void setAnalysisModelFiles(List<FileCommand> analysisModelFiles) {
-        this.analysisModelFiles = analysisModelFiles;
+    public void setAnalysisMethodResultFiles(List<FileCommand> analysisMethodResultFiles) {
+        this.analysisMethodResultFiles = analysisMethodResultFiles;
     }
 
     public String getContributionBU() {

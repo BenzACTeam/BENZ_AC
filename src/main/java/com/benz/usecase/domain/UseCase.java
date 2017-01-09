@@ -1,5 +1,8 @@
 package com.benz.usecase.domain;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by paulliu on 2016/12/12.
  */
@@ -8,14 +11,19 @@ public class UseCase {
     private CaseSubject subject;
     private String value;
     private String scenario;
-    private Result result;
     private String dataSource;
     private String dataTypeDescription;
-    private AnalysisModel analysisModel;
+    private AnalysisMethodResult analysisMethodResult;
+    private ValidationMethodResult validationMethodResult;
+    private ImplMethodResult implMethodResult;
     private String contributionBU;
     private String stage;
     private TimeFrame timeFrame;
     private String contact;
+
+    private List<Attachment> attachments;
+    private Date createTime;
+
 
     public String getId() {
         return id;
@@ -49,12 +57,12 @@ public class UseCase {
         this.scenario = scenario;
     }
 
-    public Result getResult() {
-        return result;
+    public ValidationMethodResult getValidationMethodResult() {
+        return validationMethodResult;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setValidationMethodResult(ValidationMethodResult validationMethodResult) {
+        this.validationMethodResult = validationMethodResult;
     }
 
     public String getDataSource() {
@@ -73,12 +81,20 @@ public class UseCase {
         this.dataTypeDescription = dataTypeDescription;
     }
 
-    public AnalysisModel getAnalysisModel() {
-        return analysisModel;
+    public AnalysisMethodResult getAnalysisMethodResult() {
+        return analysisMethodResult;
     }
 
-    public void setAnalysisModel(AnalysisModel analysisModel) {
-        this.analysisModel = analysisModel;
+    public void setAnalysisMethodResult(AnalysisMethodResult analysisMethodResult) {
+        this.analysisMethodResult = analysisMethodResult;
+    }
+
+    public ImplMethodResult getImplMethodResult() {
+        return implMethodResult;
+    }
+
+    public void setImplMethodResult(ImplMethodResult implMethodResult) {
+        this.implMethodResult = implMethodResult;
     }
 
     public String getContributionBU() {
@@ -116,28 +132,27 @@ public class UseCase {
     public UseCase() {
     }
 
-    public UseCase(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, AnalysisModel analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
-
+    public UseCase(String id, CaseSubject subject, String value, String scenario, String dataSource, String dataTypeDescription, AnalysisMethodResult analysisMethodResult, ValidationMethodResult validationMethodResult, ImplMethodResult implMethodResult, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
         this.id = DomainRegistry.repository().nextIdentity();
         this.subject = subject;
         this.value = value;
         this.scenario = scenario;
-        this.result = result;
         this.dataSource = dataSource;
         this.dataTypeDescription = dataTypeDescription;
-        this.analysisModel = analysisModel;
+        this.analysisMethodResult = analysisMethodResult;
+        this.validationMethodResult = validationMethodResult;
+        this.implMethodResult = implMethodResult;
         this.contributionBU = contributionBU;
         this.stage = stage;
         this.timeFrame = timeFrame;
         this.contact = contact;
-
     }
 
     public void create() {
         DomainRegistry.repository().save(this);
     }
 
-    public void update(CaseSubject subject, String value, String scenario, Result result, String dataSource, String dataTypeDescription, AnalysisModel analysisModel, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
+    public void update(CaseSubject subject, String value, String scenario, ValidationMethodResult validationMethodResult, String dataSource, String dataTypeDescription, AnalysisMethodResult analysisMethodResult, String contributionBU, String stage, TimeFrame timeFrame, String contact) {
         setSubject(subject);
         setValue(value);
         setScenario(scenario);
@@ -148,8 +163,8 @@ public class UseCase {
         setTimeFrame(timeFrame);
         setContact(contact);
 
-        this.result.reset(result);
-        this.analysisModel.reset(analysisModel);
+        this.validationMethodResult.reset(validationMethodResult);
+        this.analysisMethodResult.reset(analysisMethodResult);
 
         DomainRegistry.repository().save(this);
     }

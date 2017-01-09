@@ -17,10 +17,13 @@
             <id name="id"></id>
             <embedded name="timeFrame"></embedded>
             <embedded name="subject"></embedded>
-            <embedded name="result">
+            <embedded name="analysisMethodResult">
                 <one-to-many></one-to-many>
             </embedded>
-            <embedded name="analysisModel">
+            <embedded name="validationMethodResult">
+                <one-to-many></one-to-many>
+            </embedded>
+            <embedded name="implMethodResult">
                 <one-to-many></one-to-many>
             </embedded>
         </attributes>
@@ -33,7 +36,7 @@
             </basic>
         </attributes>
     </embeddable>
-    <embeddable class="com.benz.usecase.domain.Result">
+    <embeddable class="com.benz.usecase.domain.AnalysisMethodResult">
         <attributes>
             <one-to-many name="files">
                 <join-column name="case_id" nullable="false"/>
@@ -42,11 +45,11 @@
                 </cascade>
             </one-to-many>
             <basic name="text">
-                <column name="result_text"/>
+                <column name="analysis_method_result_text"/>
             </basic>
         </attributes>
     </embeddable>
-    <embeddable class="com.benz.usecase.domain.AnalysisModel">
+    <embeddable class="com.benz.usecase.domain.ValidationMethodResult">
         <attributes>
             <one-to-many name="files">
                 <join-column name="case_id" nullable="false"/>
@@ -55,19 +58,36 @@
                 </cascade>
             </one-to-many>
             <basic name="text">
-                <column name="analysismodel_text"/>
+                <column name="validation_method_result_text"/>
             </basic>
         </attributes>
     </embeddable>
-    <entity class="com.benz.usecase.domain.ResultFile">
+    <embeddable class="com.benz.usecase.domain.ImplMethodResult">
+        <attributes>
+            <one-to-many name="files">
+                <join-column name="case_id" nullable="false"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+            <basic name="text">
+                <column name="impl_Method_Result_text"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <entity class="com.benz.usecase.domain.AnalysisMethodResultFile">
         <attributes>
             <id name="id"></id>
         </attributes>
     </entity>
-    <entity class="com.benz.usecase.domain.AnalysisModelFile">
+    <entity class="com.benz.usecase.domain.ValidationMethodResultFile">
         <attributes>
             <id name="id"></id>
         </attributes>
     </entity>
-
+    <entity class="com.benz.usecase.domain.ImplMethodResultFile">
+        <attributes>
+            <id name="id"></id>
+        </attributes>
+    </entity>
 </entity-mappings>

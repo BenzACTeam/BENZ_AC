@@ -1,12 +1,5 @@
 package com.benz.usecase.application;
 
-import com.benz.usecase.domain.DomainRegistry;
-import com.benz.usecase.domain.Result;
-
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 /**
  * Created by hongying.fu on 12/22/2016.
  */

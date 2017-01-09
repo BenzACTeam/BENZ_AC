@@ -20,21 +20,21 @@ public class UseCaseApplicationService {
 
     public String createUseCase(UseCaseCreateCommand command) {
 
-        List<ResultFile> resultFileList = parseResultFiles(command.getResultFiles());
-        Result result = new Result(command.getResultText(), resultFileList);
+        List<ValidationMethodResultFile> validationMethodResultFileList = parseResultFiles(command.getValidationMethodResultFiles());
+        ValidationMethodResult validationMethodResult = new ValidationMethodResult(command.getValidationMethodResultText(), validationMethodResultFileList);
 
-        List<AnalysisModelFile> analysisModelFileList = parseAnalysisModelFiles(command.getAnalysisModelFiles());
-        AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(), analysisModelFileList);
+        List<AnalysisMethodResultFile> analysisMethodResultFileList = parseAnalysisModelFiles(command.getAnalysisMethodResultFiles());
+        AnalysisMethodResult analysisMethodResult = new AnalysisMethodResult(command.getAnalysisMethodResultText(), analysisMethodResultFileList);
 
         UseCase useCase =
                 new UseCase(
                         new CaseSubject(command.getSubject()),
                         command.getValue(),
                         command.getScenario(),
-                        result,
+                        validationMethodResult,
                         command.getDataSource(),
                         command.getDataTypeDescription(),
-                        analysisModel,
+                        analysisMethodResult,
                         command.getContributionBU(),
                         command.getStage(),
                         new TimeFrame(command.getFromDate(), command.getToDate()),
@@ -50,20 +50,20 @@ public class UseCaseApplicationService {
     public void updateUseCase(UseCaseUpdateCommand command) {
         UseCase useCase = existing(command.getId());
 
-        List<ResultFile> resultFileList = parseResultFiles(command.getResultFiles());
-        Result result = new Result(command.getResultText(), resultFileList);
+        List<ValidationMethodResultFile> validationMethodResultFileList = parseResultFiles(command.getValidationMethodResultFiles());
+        ValidationMethodResult validationMethodResult = new ValidationMethodResult(command.getValidationMethodResultText(), validationMethodResultFileList);
 
-        List<AnalysisModelFile> analysisModelFileList = parseAnalysisModelFiles(command.getAnalysisModelFiles());
-        AnalysisModel analysisModel = new AnalysisModel(command.getAnalysisModelText(), analysisModelFileList);
+        List<AnalysisMethodResultFile> analysisMethodResultFileList = parseAnalysisModelFiles(command.getAnalysisMethodResultFiles());
+        AnalysisMethodResult analysisMethodResult = new AnalysisMethodResult(command.getAnalysisMethosResultText(), analysisMethodResultFileList);
 
         useCase.update(
                 new CaseSubject(command.getSubject()),
                 command.getValue(),
                 command.getScenario(),
-                result,
+                validationMethodResult,
                 command.getDataSource(),
                 command.getDataTypeDescription(),
-                analysisModel,
+                analysisMethodResult,
                 command.getContributionBU(),
                 command.getStage(),
                 new TimeFrame(command.getFromDate(), command.getToDate()),
@@ -81,25 +81,25 @@ public class UseCaseApplicationService {
         return useCase;
     }
 
-    private List<AnalysisModelFile> parseAnalysisModelFiles(List<FileCommand> fileCommands) {
-        List<AnalysisModelFile> analysisModelFileList = new ArrayList<>();
+    private List<AnalysisMethodResultFile> parseAnalysisModelFiles(List<FileCommand> fileCommands) {
+        List<AnalysisMethodResultFile> analysisMethodResultFileList = new ArrayList<>();
         if (fileCommands != null && fileCommands.size() > 0) {
             for (FileCommand analysisModelFileCommand : fileCommands) {
-                AnalysisModelFile analysisModelFile = new AnalysisModelFile(analysisModelFileCommand.getFileName(), analysisModelFileCommand.getUrl());
-                analysisModelFileList.add(analysisModelFile);
+                AnalysisMethodResultFile analysisMethodResultFile = new AnalysisMethodResultFile(analysisModelFileCommand.getFileName(), analysisModelFileCommand.getUrl());
+                analysisMethodResultFileList.add(analysisMethodResultFile);
             }
         }
-        return analysisModelFileList;
+        return analysisMethodResultFileList;
     }
 
-    private List<ResultFile> parseResultFiles(List<FileCommand> fileCommands) {
-        List<ResultFile> resultFiles = new ArrayList<>();
+    private List<ValidationMethodResultFile> parseResultFiles(List<FileCommand> fileCommands) {
+        List<ValidationMethodResultFile> validationMethodResultFiles = new ArrayList<>();
         if (fileCommands != null && fileCommands.size() > 0) {
             for (FileCommand fileCommand : fileCommands) {
-                ResultFile resultFile = new ResultFile(fileCommand.getFileName(), fileCommand.getUrl());
-                resultFiles.add(resultFile);
+                ValidationMethodResultFile validationMethodResultFile = new ValidationMethodResultFile(fileCommand.getFileName(), fileCommand.getUrl());
+                validationMethodResultFiles.add(validationMethodResultFile);
             }
         }
-        return resultFiles;
+        return validationMethodResultFiles;
     }
 }
